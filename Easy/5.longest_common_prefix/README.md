@@ -16,7 +16,30 @@
 ```
 
 
-## 横向两两对比
+## 纵向扫描
+```typescript
+function findLongestCommonPrefix(strs: string[]): string {
+  let prefix = ''
+  if (!strs.length) return prefix
+  for (let i = 0; i < strs[0].length; i++) {
+    for (let j = 0; j < strs.length; j++) {
+      if (strs[0][i] !== strs[j][i]) return prefix
+    }
+    prefix += strs[0][i]
+  }
+
+  return prefix
+}
+```
+- 时间复杂度：O(mn)O(mn)，其中 mm 是字符串数组中的字符串的平均长度，nn 是字符串的数量。最坏情况下，字符串数组中的每个字符串的每个字符都会被比较一次。
+
+- 空间复杂度：O(1)O(1)。使用的额外空间复杂度为常数。
+
+
+## 横向扫描
+- 用`String.prototype.charAt(n)`获取第n+1位的字符
+- 遍历每个字符串，比较这个字符串和上一次公共前缀
+
 ```typescript
 const LongestCommonPrefix = (strs: string[]): string => {
   // 对比时只需要遍历到最短元素的结尾
@@ -42,4 +65,10 @@ const LongestCommonPrefix = (strs: string[]): string => {
   }
   return prefix
 }
+
+```
+## 两分查找
+
+```typescript
+
 ```
