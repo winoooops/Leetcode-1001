@@ -1,0 +1,17 @@
+{
+  "name": "Leetcode-1001",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/winoooops/Leetcode-1001.git",
+  "author": "weiwang <winoooops@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7"
+  }
+}
