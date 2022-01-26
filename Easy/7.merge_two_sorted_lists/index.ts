@@ -10,8 +10,6 @@ export class ListNode {
 export function makeListNode(arr: number[]): ListNode | null {
   if (!arr.length) return null
 
-  if (arr.length === 1) return new ListNode(arr[0], null)
-
   let result = arr.reduceRight((prev: ListNode | null, curr: number): ListNode | null => {
     return new ListNode(curr, prev)
   }, null)
