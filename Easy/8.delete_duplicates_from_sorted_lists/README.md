@@ -41,13 +41,21 @@ for (int i = 0; i < len; i++) {
 解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
 ```
 
-提示：
+## 提示：
 
 > 0 <= nums.length <= 3 * 104
 > 
 > -104 <= nums[i] <= 104
 >
 > nums 已按升序排列
+
+## 关键
+
+* 数组已经排序，所以重复的元素一定连在一起，找出它们并不难，但如果毎找到一个重复元素就立即删除它，就是在数组中间进行删除操作，整个时间复杂度是会达到 O(N^2)
+* 题目要求原地删除，原地删除的意思通俗一点的说就是不占用额外的空间
+* 通用解法就是使用快慢指针技巧
+* 让慢指针slow走在后面，快指针fast走在前面探路，找到一个不重复的元素就告诉slow并让slow前进一步，这样当fast指针遍历完整个数组nums后，nums[0..slow]就是不重复元素。
+
 
 
 ## 直接遍历并修改数组下标
@@ -64,7 +72,6 @@ function removeDuplicates(nums: number[]): number {
 ```
 
 ## 双指针修改数组元素
-![](1.png)
 ```ts
 export const removeDuplicates = (list: number[]): number => {
   let i: number = 0
@@ -78,3 +85,4 @@ export const removeDuplicates = (list: number[]): number => {
   return i + 1
 }
 ```
+![](1.png)
