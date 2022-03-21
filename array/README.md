@@ -13,6 +13,8 @@
 ### 常见思路
 
 * [二分法](./binary-search/README.md)
-* [移除元素](./remove-element/README.md)
+* [快慢指针](./remove-element/README.md)
+* [前后快慢指针](./squares-sorted-array/README.md)
+* [滑动窗口](./minimal-subarray-length/)
 
 
