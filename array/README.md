@@ -15,6 +15,7 @@
 * [二分法](./binary-search/README.md)
 * [快慢指针](./remove-element/README.md)
 * [前后快慢指针](./squares-sorted-array/README.md)
-* [滑动窗口](./minimal-subarray-length/)
+* [滑动窗口](./minimal-subarray-length/README.md)
+* [螺旋矩阵](./spiral-matrix/README.md)
 
 
