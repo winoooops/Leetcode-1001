@@ -5,11 +5,11 @@
 
 常见基本思路:
 
-* 搜索有序数组: [二分法](./binary-search/README.md)
-* 以`O(n)`的空间复杂度修改有序数组: [快慢指针](./remove-element/README.md)
-* 不一样的有序数组: [前后快慢指针](./squares-sorted-array/README.md)
-* 需要范围的快慢指针:[滑动窗口](./minimal-subarray-length/README.md)
-* 螺旋矩阵: [螺旋矩阵](./spiral-matrix/README.md)
+* 搜索有序数组: [二分法](./array/binary-search/README.md)
+* 以`O(n)`的空间复杂度修改有序数组: [快慢指针](./array/remove-element/README.md)
+* 不一样的有序数组: [前后快慢指针](./array/squares-sorted-array/README.md)
+* 需要范围的快慢指针:[滑动窗口](./array/minimal-subarray-length/README.md)
+* 螺旋矩阵: [螺旋矩阵](./array/spiral-matrix/README.md)
 
 
 
