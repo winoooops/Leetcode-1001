@@ -56,21 +56,22 @@ export function spiralMatrixOne(matrix: Matrix) {
     columnEnd--
 
     // 向右移动
-    if(rowBegin <= rowEnd) {
+    // 需要注意当rowBegin被增加到等于rowEnd的特殊情况
+    if(rowBegin <= rowEnd) { 
       for(let x = columnEnd; x >= columnBegin; x--) {
         list.push(matrix[rowEnd][x])
       }
+      rowEnd--
     }
-    rowEnd--
 
     // 向上移动
+    // 需要注意特殊情况
     if(columnBegin <= columnEnd) {
       for(let y = rowEnd; y >= rowBegin; y--) {
         list.push(matrix[y][columnBegin])
       }
+      columnBegin++
     }
-    columnBegin++
-
   }
   return list
 }

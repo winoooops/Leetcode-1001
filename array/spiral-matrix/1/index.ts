@@ -11,44 +11,38 @@ export function spiralMatrixOne(matrix: Matrix) {
   let columnBegin = 0;
   let columnEnd = matrix[0].length - 1;
 
-  while(rowBegin < rowEnd && columnBegin < columnEnd) {
+  while(rowBegin <= rowEnd && columnBegin <= columnEnd) {
     // 四个循环分别控制matrix的向右, 向下, 向左, 向上移动
     
     // 向右移动
-    for(let i = columnBegin; i < columnEnd; i++ ) {
+    for(let i = columnBegin; i <= columnEnd; i++ ) {
       list.push(matrix[rowBegin][i])
     }
+    rowBegin++
 
     // 向下移动
-    for(let j = rowBegin; j < rowEnd; j++) {
+    for(let j = rowBegin; j <= rowEnd; j++) {
       list.push(matrix[j][columnEnd])
     }
+    columnEnd--
 
     // 向右移动
-    for(let x = columnEnd; x > columnBegin; x--) {
-      list.push(matrix[rowEnd][x])
+    // 需要注意当rowBegin被增加到等于rowEnd的特殊情况
+    if(rowBegin <= rowEnd) { 
+      for(let x = columnEnd; x >= columnBegin; x--) {
+        list.push(matrix[rowEnd][x])
+      }
+      rowEnd--
     }
 
     // 向上移动
-    for(let y = rowEnd; y > rowBegin; y--) {
-      list.push(matrix[y][columnBegin])
-    }
-    
-    rowBegin++
-    rowEnd--
-    columnBegin++
-    columnEnd--
-  }
-  
-  if(rowBegin === rowEnd) {
-    for(let z = columnBegin; z <= columnEnd ;z++){
-      list.push(matrix[rowBegin][z])
-    }
-  } else if(columnBegin === columnEnd) {
-    for(let z = rowBegin; z <= rowEnd; z++) {
-      list.push(matrix[z][columnBegin])
+    // 需要注意特殊情况
+    if(columnBegin <= columnEnd) {
+      for(let y = rowEnd; y >= rowBegin; y--) {
+        list.push(matrix[y][columnBegin])
+      }
+      columnBegin++
     }
   }
-
   return list
 }

@@ -5,8 +5,8 @@ export function isValid(R: number, C: number, rowAt: number, columnAt: number) {
 export function spiralMatrixThree(R: number, C: number, r0: number, c0: number) {
   const result = []
   // 横纵坐标上移动的方向
-  const directionOfRow = [1,0,-1,0]
-  const directionOfCol = [0,1,0,-1]
+  const directionOfCol = [1,0,-1,0]
+  const directionOfRow = [0,1,0,-1]
 
   let steps = 0;         // 当前方向上行走的步数
   let maxSteps = 1;      // 当前方向上最多能走几步
