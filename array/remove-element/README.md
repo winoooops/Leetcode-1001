@@ -70,18 +70,19 @@ export function removeElement(nums: Number[], target: Number) {
 
 
 ```ts
-function removeElement(nums: Number[], target: Number) {
+export function removeElement(nums: Number[], target: Number) {
   if(nums.length === 0 ) return 0 
   
-  let slow = 0 
+  let index = 0 
 
-  for(let fast = 0; fast < nums.length ; fast++) {
-    if(nums[fast] !== target) {
-      nums[slow] = nums[fast]  
-      slow++
+  for(let j = index ; j < nums.length ; j++) {
+    // if the numer checks out, replace it at the current index
+    if(nums[j] !== target ) {
+      nums[index] = nums[j]
+      index++
     }
+    // if the numer equals to target, simply ignore it, so that it could be replaced later
   }
-
-  return slow
+  return index
 }
 ```

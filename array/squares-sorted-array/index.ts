@@ -5,6 +5,7 @@ export function sortSquares(nums: number[]): number[] {
   let i = 0
   let j = length - 1 
   let k = length - 1
+
   while(i <= j) {
     if(Math.abs(nums[i]) > Math.abs(nums[j])) {
       result[k] = nums[i] * nums[i]
@@ -15,8 +16,6 @@ export function sortSquares(nums: number[]): number[] {
     }
     k--
   }
-  console.log(i)
-  console.log(j)
-  console.log(result)
-  return result 
+
+  return result
 }

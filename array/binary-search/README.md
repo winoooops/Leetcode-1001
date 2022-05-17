@@ -33,6 +33,8 @@
 循环的条件是 `while(left <= right)`
 ```typescript 
 export function BinarySearch(nums: Number[], target: Number) {
+  if(!target && target !== 0) return -1
+
   const length = nums.length  
   
   let left = 0 
@@ -59,6 +61,8 @@ export function BinarySearch(nums: Number[], target: Number) {
 循环的条件是 `while(left < right)`
 ```typescript
 export function BinarySearch(nums: Number[], target: Number) {
+  if(!target && target !==0) return -1
+
   const length = nums.length  
   
   let left = 0 

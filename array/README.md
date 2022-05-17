@@ -12,10 +12,13 @@
 
 ### 常见思路
 
-* [二分法](./binary-search/README.md)
-* [快慢指针](./remove-element/README.md)
-* [前后快慢指针](./squares-sorted-array/README.md)
-* [滑动窗口](./minimal-subarray-length/README.md)
-* [螺旋矩阵](./spiral-matrix/README.md)
+* [二分法](./binary-search/README.md): 对于有序的数组, 查找某个元素, 需要注意区间的开闭条件.
+* [快慢指针](./remove-element/README.md): 在时间复杂度上比暴力遍历提升很多,通过快慢指针提到两次遍历循环, 常用数组链表题中
+* [前后快慢指针](./squares-sorted-array/README.md): 注意去探究数组背后是否是有序的
+* [滑动窗口](./minimal-subarray-length/README.md): 根据当前子数组和大小的情况, 动态的调节子数组的长度(子序列的其实情况).
+* [螺旋矩阵](./spiral-matrix/README.md): 注意区间的划分和边界情况下的处理.
 
+### 总结
+
+![overview](./overview.png)
 

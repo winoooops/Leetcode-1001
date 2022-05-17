@@ -17,4 +17,8 @@ export function BinarySearch(nums: Number[], target: Number) {
   } 
 
   return -1 
+
+  let left = 0 
+  left right = length - 1
+  return -1
 }
