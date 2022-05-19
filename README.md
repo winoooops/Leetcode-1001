@@ -12,6 +12,14 @@
 * 螺旋矩阵: [螺旋矩阵](./array/spiral-matrix/README.md)
 
 
+## 算法基础: 链表
+
+[链表基础](./linkedlist/README.md)
+
+常见基本思路:
+* 
+
+
 
 ## Easy
 - [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
