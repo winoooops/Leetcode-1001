@@ -52,7 +52,12 @@ class ListNode<T> {
 
 ![addition](../static/img/linkedlist/addition.png)
 
+## 常见思路:
 
-## [虚拟头节点](./)
+
+### 虚拟头节点
+
+* [删除链表元素](./remove-linkedlist-element/README.md)
+* [设计链表](./design-linked-list/README.md)
 
 
