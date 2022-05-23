@@ -3,17 +3,17 @@ import { ListNode } from "../linkedlist.types"
 export function reverseLinkedList(head: ListNode<number> | null): ListNode<number> | null {
   if(!head) return head
 
-  let dummy = new ListNode(0, head)
-  let curr: ListNode<number> = dummy.next
-  let prev: ListNode<number> | null = null
-  let next: ListNode<number>
+  return reverse(null, head)
+}
 
-  while(curr){
-    next = curr.next
-    curr.next = prev
-    prev = curr
-    curr = next
-  }
 
-  return prev
+export function reverse(prev: ListNode<number> | null, curr: ListNode<number> | null) {
+  if(!curr) return prev
+  
+  let next: ListNode<number> | null = curr.next
+  curr.next = prev 
+  prev = curr
+  curr = next
+
+  return reverse(prev, curr)
 }
