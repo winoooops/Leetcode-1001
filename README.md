@@ -17,11 +17,14 @@
 [链表基础](./linkedlist/README.md)
 
 常见基本思路:
-* 
+* 虚拟头节点 
+  * [删除链表元素](./linkedlist/remove-linkedlist-element/)
+  * [设计链表](./linkedlist/design-linked-list/README.md)
+  * [逆转链表](./linkedlist/reverse-linkedlist/README.md)
 
 
 
-## Easy
+<!-- ## Easy
 - [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
 - [Night 2: 整数反转](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/2)
 - [Night 3: 回文数](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/3)
@@ -33,4 +36,4 @@
 - [Night 9: 删除元素](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/9)
 - [Night 10: 实现subStr](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/10)
 
-
+-->
