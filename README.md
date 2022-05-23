@@ -21,7 +21,8 @@
   * [删除链表元素](./linkedlist/remove-linkedlist-element/)
   * [设计链表](./linkedlist/design-linked-list/README.md)
   * [逆转链表](./linkedlist/reverse-linkedlist/README.md)
-
+  * [两两交换节点](./linkedlist/swap-nodes-in-pairs/)
+  * [删除列表倒数第n位](./linkedlist/remove-nth-node/
 
 
 <!-- ## Easy
