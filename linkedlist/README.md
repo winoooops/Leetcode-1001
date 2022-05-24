@@ -62,3 +62,5 @@ class ListNode<T> {
 * [逆转链表](./reverse-linkedlist/README.md)
 * [两两交换节点](./swap-nodes-in-pairs/)
 * [删除列表倒数第n位](./remove-nth-node/)
+* [链表相交](./intersections-of-two-linkedList/)
+* [环形链表](./linkedlist-cycle/)
