@@ -27,6 +27,16 @@
   * [环形链表](./linkedlist/linkedlist-cycle/)
 * 双指针拼接
   * [链表相交](./linkedlist/intersections-of-two-linkedList/)
+
+## 算法基础: 哈希表
+
+[哈希表基础](./hash-table/)
+
+* 哈希表记录元素出现次数
+  * 字母异位词
+    * [有效的字母异位词](./valid-anagram/)
+    * [字母异位词分组](./group-anagram/)
+    * [找到字符串中的所有字母异位词](./find-anagrams/)
 <!-- ## Easy
 - [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
 - [Night 2: 整数反转](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/2)
