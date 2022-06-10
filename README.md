@@ -33,18 +33,18 @@
 [哈希表基础](./hash-table/)
 
 * 字母异位词
-  * [有效的字母异位词](./valid-anagram/)
-  * [字母异位词分组](./group-anagram/)
-  * [找到字符串中的所有字母异位词](./find-anagrams/)
-* [哈希表统计出现次数](./find-common-char/)
+  * [有效的字母异位词](./hash-table/valid-anagram/)
+  * [字母异位词分组](./hash-table/group-anagram/)
+  * [找到字符串中的所有字母异位词](./hash-table/find-anagrams/)
+* [哈希表统计出现次数](./hash-table/find-common-char/)
 * Set处理不限制数量的哈希
-  * [两个数组的交集](./intersections-two-array/)
-  * [快乐数](./happy-number/)
+  * [两个数组的交集](./hash-table/intersections-two-array/)
+  * [快乐数](./hash-table/happy-number/)
 * Map处理需要多维数据的哈希 
-  * [两数之和](./two-sum/)
-  * [四数相加](./four-sum/)
+  * [两数之和](./hash-table/two-sum/)
+  * [四数相加](./hash-table/four-sum/)
 * 哈希表不擅长处理需要去重的情况
-  * [三数相加](./three-sum/)
+  * [三数相加](./hash-table/three-sum/)
 <!-- ## Easy
 - [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
 - [Night 2: 整数反转](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/2)
