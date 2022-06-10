@@ -35,3 +35,7 @@
   * [有效的字母异位词](./valid-anagram/)
   * [字母异位词分组](./group-anagram/)
   * [找到字符串中的所有字母异位词](./find-anagrams/)
+* [哈希表统计出现次数](./find-common-char/)
+* Set处理不限制数量的哈希
+  * [两个数组的交集](./intersections-two-array/)
+  * [快乐数](./happy-number/)
