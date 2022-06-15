@@ -36,15 +36,16 @@
   * [有效的字母异位词](./hash-table/valid-anagram/)
   * [字母异位词分组](./hash-table/group-anagram/)
   * [找到字符串中的所有字母异位词](./hash-table/find-anagrams/)
-* [哈希表统计出现次数](./hash-table/find-common-char/)
-* Set处理不限制数量的哈希
+  * [哈希表统计出现次数](./hash-table/find-common-char/)
+* Set作为哈希表(常见于没有限制数值大小的情况)
   * [两个数组的交集](./hash-table/intersections-two-array/)
   * [快乐数](./hash-table/happy-number/)
-* Map处理需要多维数据的哈希 
+* Map哈希处理需要多维数据且数量不限制 
   * [两数之和](./hash-table/two-sum/)
-  * [四数相加](./hash-table/four-sum/)
-* 哈希表不擅长处理需要去重的情况
+  * [四数相加II](./hash-table/four-sum/)
+* 哈希表不擅长处理需要去重的情况(用双指针更好)
   * [三数相加](./hash-table/three-sum/)
+  * [四数相加I](./hash-table/four-sum/)
 <!-- ## Easy
 - [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
 - [Night 2: 整数反转](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/2)
