@@ -27,20 +27,20 @@
 ```typescript 
 export function findAnagram(s: string, p: string) {
   const result = []
-    if(p.length > s.length) return result 
-    
-    let slow = 0 
-    let fast = 0 
-    
-    while(fast <= s.length) {
-        if(fast - slow === p.length) {
-            isAnagram(s.substring(slow, fast), p) && result.push(slow)
-            slow++
-        } 
-        fast++
-    }
-    
-    return result
+  if(p.length > s.length) return result 
+  
+  let slow = 0 
+  let fast = 0 
+  
+  while(fast <= s.length) {
+      if(fast - slow === p.length) {
+          isAnagram(s.substring(slow, fast), p) && result.push(slow)
+          slow++
+      } 
+      fast++
+  }
+  
+  return result
 }
 
 function isAnagram(one: string, two: string) {
@@ -78,7 +78,11 @@ function isAnagram(one: string, two: string) {
     }
   }
   ```  
-* 遍历s, 当
+* 遍历s, 当s出现的字母数量和次数对应上p缺失的字母数量时, 比较子字符串和p的长度
+  * 如果长度相等, 那么符合条件
+  * 在慢指针往右边移动的时候, 判断下个字母是否出现在p中, 如果出现, count--
+
+> 关键: 这个解法中, 是慢指针的位置决定了子字符串的长度
 
 
 ```typescript 

@@ -1,0 +1,15 @@
+# 字符串
+
+## 常见思路: 双指针法
+
+[替换空格](./replace-spaces/README.md)
+
+## 常见思路: 反转
+
+[反转字符串](./reverse-string/README.md)
+
+## 常见思路: **KMP**
+
+
+
+
