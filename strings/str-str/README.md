@@ -181,19 +181,3 @@ export function strStr(haystack: string, needle: string) {
 }
 ```
 
-
-
-
-
-left right next
-           0 
-
-0 1 0
-0 2 0
-0 3 1 
-1 4 2 
-2 5
-
-
-
-
