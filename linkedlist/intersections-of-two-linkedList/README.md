@@ -12,6 +12,53 @@
 ### 利用HashMap 
 
 ### 首先计算长度
+``` typescript 
+function getIntersectionNode(headA:ListNode<number> | null, headB: ListNode<number> | null) {
+  if(!headA ||!headB) return null
+
+  let nodeA = headA
+  let nodeB = headB
+
+  let sizeA = 0
+  let sizeB = 0 
+  let sizeGap = 0 
+
+  // calculate sizeA 
+  while(nodeA) {
+    sizeA++
+    nodeA = nodeA.next
+  }
+
+  // calculate sizeB
+  while(nodeB) {
+    sizeB++
+    nodeB = nodeB.next
+  }
+
+  sizeGap = sizeA - sizeB 
+
+  // move the longer linkedlist to fit the size of the shorter one
+  if(sizeGap > 0) {
+    while(sizeGap !== 0) {
+      sizeGap --
+      headA = headA.next
+    }
+  } else {
+    while(sizeGap !== 0) {
+      sizeGap ++
+      headB = headB.next
+    }
+  }
+
+  // comparison
+  while(headA !== headB) {
+    headA = headA.next
+    headB = headB.next
+  }
+
+  return headA
+};
+```
  
 ### 拼接链表(两链表总长度固定)
 ```typescript 

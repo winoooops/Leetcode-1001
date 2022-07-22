@@ -46,16 +46,35 @@
 * 哈希表不擅长处理需要去重的情况(用双指针更好)
   * [三数相加](./hash-table/three-sum/)
   * [四数相加I](./hash-table/four-sum/)
-<!-- ## Easy
-- [Night 1: 两数之和](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/1)
-- [Night 2: 整数反转](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/2)
-- [Night 3: 回文数](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/3)
-- [Night 4: 罗马数字转整数](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/4)
-- [Night 5: 最长公共前缀](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/5)
-- [Night 6: 有效的括号](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/6)
-- [Night 7: 合并两个有序链表](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/7)
-- [Night 8: 删除有序数组中的重复项](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/8)
-- [Night 9: 删除元素](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/9)
-- [Night 10: 实现subStr](https://github.com/winoooops/Leetcode-1001/tree/main/Easy/10)
 
--->
+## 算法基础: 字符串
+
+* 双指针法
+  * [替换空格](./strings/replace-spaces/README.md)
+* 常见思路: 反转
+  * [反转字符串](./strings/reverse-string/README.md)
+* 常见思路: 局部反转 + 整体反转
+  * [反转字符串中的单词](./strings/reverse-words)
+  * [左旋转字符串](./strings/reverse-left-words)
+* 常见思路: **KMP**
+  * [实现strStr](./strings/str-str)
+  * [重复的子字符串](./strings/repeated-substring/)
+
+## 算法基础: 双指针
+
+双指针法并不隶属于某一种数据结构，在数组，链表，字符串都用到了双指针法.
+
+* 数组
+  * [移除元素](../array/remove-element/)
+* 字符串
+  * [反转字符串](../strings/reverse-string/)
+  * [替换空格](../strings/replace-spaces/)
+  * [反转字符串中的单词](../strings/reverse-words/)
+* 链表
+  * [反转链表](../linkedlist/reverse-linkedlist/)
+  * [删除链表的倒数第N个节点](../linkedlist/remove-nth-node/)
+  * [链表相交](../linkedlist/intersections-of-two-linkedList/)
+  * [环形链表](../linkedlist/linkedlist-cycle/)
+* 哈希
+  * [三数之和](../hash-table/three-sum/)
+  * [四数之和](../hash-table/four-sum/)

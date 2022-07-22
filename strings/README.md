@@ -16,6 +16,7 @@
 ## 常见思路: **KMP**
 
 * [实现strStr](./str-str)
+* [重复的子字符串](./repeated-substring/)
 
 
 

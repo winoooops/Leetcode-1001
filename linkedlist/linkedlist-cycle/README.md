@@ -52,7 +52,7 @@
 
 ### 解题思路
 
-因为如果快慢指针相遇, 那么一定是在环的中间(不在换的末尾), 所以
+**如果快慢指针相遇, 那么一定是在环的中间(不在换的末尾)**, 所以
 ```typescript 
 export function detectCycle(head: ListNode<number>): ListNode<number> | null {
   if(!head || !head.next) return null;
