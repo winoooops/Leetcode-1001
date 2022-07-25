@@ -10,7 +10,7 @@
 * boolean empty() 如果队列为空，返回 true ；否则，返回 false
 
 
-## 
+## 示例
 
 ```
 输入：
@@ -29,37 +29,103 @@ myQueue.empty(); // return false
 
 ```
 
-
-##
+## `O(n)`的解法思路
 
 为了满足队列的**FIFO**的特性，我们需要用到两个栈，用它们其中一个来反转元素的入队顺序，用另一个来存储元素的最终顺序。
 
+* `Stack.pop()`: remove the last element from the stack
+* `Queue.pop()`: remove the first element from the queue
+
+```typescript
+export class MyQueue {
+   private stackOne: number[] 
+   private stackTwo: number[]
+
+   constructor() {
+     this.stackOne = []
+     this.stackTwo = []
+   }
+
+   push(v: number) {
+     this.stackOne.push(v)
+   }
+
+   pop() {
+     while(this.stackOne.length > 0) {
+       this.stackTwo.push(this.stackOne.pop())
+     }
+
+     let tmp = this.stackTwo.pop()
+
+     while(this.stackTwo.length > 0) {
+       this.stackOne.push(this.stackTwo.pop())
+     }
+
+     return tmp
+   }
+
+   peek() {
+     while(this.stackOne.length > 0) {
+       this.stackTwo.push(this.stackOne.pop())
+     }
+
+     let tmp = this.stackTwo[this.stackTwo.length - 1]
+
+     while(this.stackTwo.length > 0) {
+       this.stackOne.push(this.stackTwo.pop())
+     }
+
+     return tmp
+   }
+
+   empty() {
+     return this.stackOne.length === 0 && this.stackTwo.length === 0
+   }
+ }
+
+```
+
+## `O(1)`解法思路
 在`push`数据的时候，只要数据放进输入栈就好，但在`pop`的时候，操作就复杂一些，输出栈如果为空，就把进栈数据全部导入进来（注意是全部导入），再从出栈弹出数据，如果输出栈不为空，则直接从出栈弹出数据就可以了。
 
 最后如何判断队列为空呢？如果进栈和出栈都为空的话，说明模拟的队列为空了。
 
 > peek()的实现，可以直接复用pop()。
+> push的时间复杂度为`O(1)`, pop和peek的时间复杂度均是`O(1)`
 
 ```typescript
-class MyQueue {
+export class MyQueue {
+  private stackIn: number[] 
+  private stackOut: number[]
+
   constructor() {
-
+    this.stackIn = []
+    this.stackOut = []
   }
 
-  push(x: number): void {
-
+  push(v: number){
+    this.stackIn.push(v)
   }
 
-  pop(): number {
-
+  pop(){
+    if(this.stackOut.length === 0) this.dump()  
+    return this.stackOut.pop()
   }
 
-  peek(): number {
-
+  peek() {
+    if(this.stackOut.length === 0) this.dump() 
+    return this.stackOut[this.stackOut.length - 1]
   }
 
-  empty(): boolean {
+  empty() {
+    return this.stackIn.length === 0 && this.stackOut.length === 0
+  }
 
+  private dump() {
+    while(this.stackIn.length > 0) {
+      this.stackOut.push(this.stackIn.pop())
+    }
   }
 }
 ```
+
