@@ -36,7 +36,7 @@ export function removeDuplicates2(s: string) {
     }
   }
 
-  return stack.join("")
+  return stack.slice(0, i).join("")
 }
 
 export function removeDuplicates3(s: string) {

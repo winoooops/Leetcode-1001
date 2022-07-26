@@ -95,6 +95,6 @@ export function removeDuplicates2(s: string) {
     }
   }
 
-  return stack.join("")
+  return stack.slice(0, left).join("") 
 }
 ```

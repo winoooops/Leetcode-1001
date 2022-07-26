@@ -7,8 +7,8 @@ describe("Leetcode 1047: Remove Duplicates", () => {
   })
 
   it("should be 'ca'", () => {
-    const s = "abbaca"
-    expect(removeDuplicates2(s)).toEqual("ca")
+    const s = "azxxzy"
+    expect(removeDuplicates2(s)).toEqual("ay")
   })
 
   it("should be 'ca'", () => {
