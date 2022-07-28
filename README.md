@@ -81,6 +81,8 @@
 
 ## 算法基础: 栈与队列 
 
+[栈与队列](./stack-queue/README.md)
+
 * Stack 
   * [括号匹配](./stack-queue/valid-parenthesis/)
   * [字符串去重](./stack-queue/remove-duplicates/): 字符串顺序放到一个栈中，然后如果相同的话 栈就弹出，这样最后栈里剩下的元素都是相邻不相同的元素了
