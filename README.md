@@ -78,3 +78,14 @@
 * 哈希
   * [三数之和](../hash-table/three-sum/)
   * [四数之和](../hash-table/four-sum/)
+
+## 算法基础: 栈与队列 
+
+* Stack 
+  * [括号匹配](./stack-queue/valid-parenthesis/)
+  * [字符串去重](./stack-queue/remove-duplicates/): 字符串顺序放到一个栈中，然后如果相同的话 栈就弹出，这样最后栈里剩下的元素都是相邻不相同的元素了
+  * [逆波兰表达式](./stack-queue/reverse-polish-notation/)
+* Queue
+  * [用栈实现队列](./stack-queue/implement-queue/README.md)
+  * [滑动窗口最大值](./stack-queue/sliding-window-max/)
+  * [前 K 个高频元素](./stack-queue/top-k/frequence/)

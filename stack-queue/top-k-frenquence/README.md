@@ -101,4 +101,5 @@ export function topKFrequencyII(nums: number[], k: number): number[] {
 }
 ```
 
+所以排序的过程的时间复杂度是`O(logk)`，整个算法的时间复杂度是`O(nlogk)`。
 

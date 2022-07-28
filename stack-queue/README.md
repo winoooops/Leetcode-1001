@@ -103,6 +103,12 @@ export class Stack<T> {
 ```
 
 
+### Classic Problems
+
+* [括号匹配](./valid-parenthesis/)
+* [字符串去重](./remove-duplicates/): 字符串顺序放到一个栈中，然后如果相同的话 栈就弹出，这样最后栈里剩下的元素都是相邻不相同的元素了
+* [逆波兰表达式](./reverse-polish-notation/)
+
 ## 队列
 
 > A Queue is a linear structure which follows a particular order in which the operations are performed. The order is **First In First Out** (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first. 
@@ -184,5 +190,10 @@ export class Queue<T> {
 }
 ```
 
-### 用栈构造队列
-[用栈实现队列](./implement-queue/README.md)
+### Classic Problems
+
+* [用栈实现队列](./implement-queue/README.md)
+* [滑动窗口最大值](./sliding-window-max/)
+* [前 K 个高频元素](./top-k/frequence/)
+
+
