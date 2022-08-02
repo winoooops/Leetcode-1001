@@ -18,10 +18,10 @@ export function preorder(node: TreeNode) {
 
   while(stack.length > 0) {
     currNode = stack.pop()!
-    result.push(currNode.val)
+    currNode?.val && result.push(currNode.val)
 
-    if(currNode?.right) stack.push(currNode.right)
-    if(currNode?.left) stack.push(currNode.left)
+    currNode?.right && stack.push(currNode.right)
+    currNode?.left && stack.push(currNode.left)
   }
 
   return result
@@ -46,7 +46,7 @@ export function postorder(root: TreeNode) {
   
   while(stack.length > 0) {
     curr = stack.pop()!
-    result.push(curr.val)
+    curr?.val && result.push(curr.val)
     // 顺序和前序遍历相反
     curr?.left && stack.push(curr.left)
     curr?.right && stack.push(curr.right)
@@ -79,9 +79,100 @@ export function inorder(root: TreeNode) {
       curr = curr.left
     } else {
       curr = stack.pop()!
-      result.push(curr.val)
+      if(curr?.val !== null) {
+        result.push(curr.val)
+      }
       curr = curr.right
     } 
+  }
+
+  return result
+}
+
+```
+
+
+## 二叉树的迭代统一法
+
+既然单纯使用栈无法同时解决访问节点（遍历节点）和处理节点（将元素放进结果集）不一致的情况。
+
+那我们就将访问的节点放入栈中, 把要处理的节点也放入栈中但是要做标记—————就是要处理的节点放入栈之后，紧接着放入一个空指针作为标记. **这种方法也可以叫做标记法**.
+
+
+```typescript 
+import { TreeNode } from "../treenode.type"
+
+// 顺序: 左中右
+// 入栈: 右中null左
+export function uInorder(root: TreeNode) {
+  const result: number[] = []
+  const stack: TreeNode[] = []
+  let curr: TreeNode = root
+
+  stack.push(curr)
+
+  while(stack.length > 0) {
+    curr = stack.pop()!
+
+    if(!curr) {
+      result.push(stack.pop()!.val)
+      continue;
+    }
+
+    curr?.right && stack.push(curr.right)
+    stack.push(curr)
+    stack.push(null)
+    curr?.left && stack.push(curr.left)
+  }
+
+  return result
+}
+
+// 顺序: 中左右
+// 入栈: 右左中null
+export function uPreOrder(root: TreeNode) {
+  const result: number[] = []
+  const stack: TreeNode[] = []
+  let curr: TreeNode = root
+
+  stack.push(curr)
+
+  while(stack.length > 0) {
+    curr = stack.pop()!
+
+    if(!curr) {
+      result.push(stack.pop()!.val)
+      continue;
+    }
+
+    curr?.right && stack.push(curr.right)
+    curr?.left && stack.push(curr.left)
+    stack.push(curr)
+    stack.push(null)
+  }
+
+  return result
+}
+
+// 顺序: 左右中
+// 入栈: 中nul右左
+export function uPostOrder(root: TreeNode): number[] {
+  const result: number[] = []
+  const stack: TreeNode[] = []
+  let curr: TreeNode = root
+  stack.push(curr)
+
+  while(stack.length > 0) {
+    curr = stack.pop()!
+
+    if(!curr) {
+      result.push(stack.pop()!.val)
+      continue
+    }
+    stack.push(curr)
+    stack.push(null)
+    curr?.right && stack.push(curr.right)
+    curr?.left && stack.push(curr.left)
   }
 
   return result

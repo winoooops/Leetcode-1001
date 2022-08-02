@@ -4,6 +4,8 @@ import { preorder } from "./preorder"
 import { inorder } from "./inorder"
 import { postorder } from "./postorder"
 
+import { uInorder, uPostOrder, uPreOrder } from "./unify"
+
 describe("Test Travasal", () => {
   let node: TreeNode
 
@@ -31,5 +33,17 @@ describe("Test Travasal", () => {
   
   it("Test Postorder Travasal", () => {
     expect(postorder(node)).toEqual([1,2,4,7,8,6,5])
+  })
+
+  it("Test Unify Inorder", () => {
+    expect(uInorder(node)).toEqual([1,4,2,5,7,6,8])
+  })
+
+  it("test Unify preOrder", () => {
+    expect(uPreOrder(node)).toEqual([5,4,1,2,6,7,8])
+  })
+
+  it("Test Unify Postorder", () => {
+    expect(uPostOrder(node)).toEqual([1,2,4,7,8,6,5])
   })
 })
