@@ -78,3 +78,20 @@
 * 哈希
   * [三数之和](../hash-table/three-sum/)
   * [四数之和](../hash-table/four-sum/)
+
+## 算法基础: 栈和队列
+
+### 栈
+> 先进后出, 后进先出 FILO
+
+- [用队列实现栈](https://www.notion.so/f8fb525df1404b56af258359858420c3)
+- [判断有效的括号](https://www.notion.so/b694f36fd7db4c2a9dea3c95d38d83e1)
+- [删除字符串中相邻的重复项](https://www.notion.so/47c62c8e963347e7988c2d89f92812ff)
+- [逆波兰表达式](https://www.notion.so/1f997a2f261641839b4b517a63049e2d)
+
+### 队列
+> 先进先出, 后进后出 FIFO
+
+- [用栈(数组)实现队列](https://www.notion.so/f62059d2be1c4cad85b68cea8938c1f0)
+- [滑动窗口最大值](https://www.notion.so/c0e8b3b68e6b4f28b5038f31978e6a5b)
+- [前K个高频元素](https://www.notion.so/K-008521ac8de84380b82a0edf0ea3c2e3)
