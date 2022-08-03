@@ -9,7 +9,7 @@ export class TreeNode {
     this.right = right === undefined ? null : right
   }
 
-  create(list: Array<number | null>):TreeNode {
+  static create(list: Array<number | null>):TreeNode {
     const root = new TreeNode(list[0])
     const queue: TreeNode[] = []
     let curr:TreeNode = root 
@@ -19,17 +19,31 @@ export class TreeNode {
     queue.push(curr)
 
     for(let i = 1; i < list.length ; i++) {
-      if(!list[i] && list[i] !== 0) {
+      if(i % 2 === 1) {
         curr = queue.shift()!
-        continue;
       } 
-      node = new TreeNode(list[i])
-      queue.push(node)
 
-      isLeft ? (curr.left = node) : (curr.right = node)
+      if(!list[i]) {
+        node = null;
+      } else {
+         node = new TreeNode(list[i])
+         queue.push(node)
+      }
+
+      if(isLeft) {
+        curr.left = node
+      } else {
+        curr.right = node
+      }
+      
       isLeft = !isLeft
     }
     
     return root
   }
 }
+
+// [5, 4, 6, 1, 2, 7, 8]
+// 0   1  2  3 
+
+
