@@ -43,7 +43,4 @@ export class TreeNode {
   }
 }
 
-// [5, 4, 6, 1, 2, 7, 8]
-// 0   1  2  3 
-
 
