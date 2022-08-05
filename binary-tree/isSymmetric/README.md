@@ -68,6 +68,10 @@ export function isSymmetric(root: TreeNode) {
 * 左子树和右子树的外侧相等
 * 左子树和右子树的内侧相等
 
+#### 深度遍历
+
+入队列顺序:`[“左左”, ”右右“, “左右”, ”右左“]`
+
 ```typescript 
 export function isSymmetric(root: TreeNode) {
   const queue: TreeNode[] = []
@@ -93,6 +97,37 @@ export function isSymmetric(root: TreeNode) {
 
     queue.push(leftNode.right)
     queue.push(rightNode.left)
+  }
+
+  return true
+}
+```
+#### 深度优先迭代(dequeue)
+
+利用dequeue可以两端推入弹出的特性
+
+```typescript
+export function isSymmetric(root: TreeNode) {
+  if(!root) return true
+  const dequeue: TreeNode[] = []
+
+  let leftNode: TreeNode | null = root.left
+  let rightNode: TreeNode | null = root.right
+
+  dequeue.unshift(leftNode)
+  dequeue.push(rightNode)
+
+  while(dequeue.length > 0) {
+    if(!leftNode && !rightNode) return true
+    if(!leftNode || !rightNode || leftNode?.val !== rightNode?.val) return false 
+
+    leftNode = dequeue.shift()
+    rightNode = dequeue.pop()
+
+    dequeue.unshift(leftNode?.right)
+    dequeue.push(rightNode?.left)
+    dequeue.unshift(leftNode?.left)
+    dequeue.push(rightNode?.right)
   }
 
   return true

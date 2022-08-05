@@ -2,17 +2,27 @@ import { TreeNode } from "../treenode.type"
 
 export function isSymmetric(root: TreeNode) {
   if(!root) return true
+  const dequeue: TreeNode[] = []
 
-  return iterator(root.left, root.right)
-}
+  let leftNode: TreeNode | null = root.left
+  let rightNode: TreeNode | null = root.right
 
-function iterator(left: TreeNode | null, right: TreeNode | null): boolean {
-  if(!left && !right) return true
-  else if(!left || !right) return false  
-  else if(left.val !== right.val) return false
+  dequeue.unshift(leftNode)
+  dequeue.push(rightNode)
 
-  let outer = iterator(left.left, right.right)
-  let inner = iterator(left.right, right.left)
+  while(dequeue.length > 0) {
+    if(!leftNode && !rightNode) return true
+    if(!leftNode || !rightNode || leftNode?.val !== rightNode?.val) return false 
 
-  return outer && inner
+    leftNode = dequeue.shift()
+    rightNode = dequeue.pop()
+
+    dequeue.unshift(leftNode?.right)
+    dequeue.push(rightNode?.left)
+
+    dequeue.unshift(leftNode?.left)
+    dequeue.push(rightNode?.right)
+  }
+
+  return true
 }
