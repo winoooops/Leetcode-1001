@@ -14,7 +14,9 @@
 
 返回最大深度: 3
 ```
+## 迭代
 
+### 层级遍历
 
 ```typescript 
 export function maxDepth(root: TreeNode | null): number {
@@ -40,4 +42,22 @@ export function maxDepth(root: TreeNode | null): number {
   return depth
 }
 ```
+
+## 递归法
+
+```typescript
+export function maxDepth(root: TreeNode | null): number {
+  return getDepth(root)
+}
+
+function getDepth(node: TreeNode | null) {
+  if(!node) return 0
+
+  let left = getDepth(node?.left)
+  let right = getDepth(node?.right)
+
+  return Math.max(left, right) + 1
+}
+```
+
 

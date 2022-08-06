@@ -10,6 +10,8 @@ export class TreeNode {
   }
 
   static create(list: Array<number | null>):TreeNode {
+    if(!list.length) return null;
+
     const root = new TreeNode(list[0])
     const queue: TreeNode[] = []
     let curr:TreeNode = root 

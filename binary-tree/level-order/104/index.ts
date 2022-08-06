@@ -1,24 +1,14 @@
 import { TreeNode } from "../../treenode.type"
 
 export function maxDepth(root: TreeNode | null): number {
-  let depth: number = 0 
-  const queue: TreeNode[] = []
+  return getDepth(root)
+}
 
-  let curr: TreeNode = root
-  let levelLength: number 
-  queue.push(curr)
+function getDepth(node: TreeNode | null) {
+  if(!node) return 0
 
-  while(queue.length > 0) {
-    levelLength = queue.length
-    depth++
+  let left = getDepth(node?.left)
+  let right = getDepth(node?.right)
 
-    for(let i = 0; i < levelLength ; i++) {
-      curr = queue.shift()!
-
-      curr?.left && queue.push(curr.left)
-      curr?.right && queue.push(curr.right)
-    }
-  }
-
-  return depth
+  return Math.max(left, right) + 1
 }
