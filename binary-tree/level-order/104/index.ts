@@ -1,14 +1,31 @@
 import { TreeNode } from "../../treenode.type"
 
+let result: number 
+
 export function maxDepth(root: TreeNode | null): number {
-  return getDepth(root)
+  result = 0 
+  if(!root) return result
+  getDepth(root, 0)
+  return result
 }
 
-function getDepth(node: TreeNode | null) {
-  if(!node) return 0
+function getDepth(node: TreeNode | null, depth: number) {
+  if(!node) return 
 
-  let left = getDepth(node?.left)
-  let right = getDepth(node?.right)
+  result = depth > result ? depth : result
+  console.log(result)
 
-  return Math.max(left, right) + 1
+  if(node.left) {
+    depth++
+    getDepth(node, depth)
+    depth-- // 回溯到父节点状态
+  }
+
+  if(node.right) {
+    depth++
+    getDepth(node, depth)
+    depth-- // 回溯到父节点状态
+  }
+  return 
 }
+

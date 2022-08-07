@@ -13,7 +13,6 @@
 输出: 3
 ```
 
-
 ```typescript 
 import { Node } from "../429/node.type"
 
