@@ -9,7 +9,7 @@ describe("Leetcode 110: Balanced Tree Node", () => {
   })
 
   it("should be false", () => {
-    const list = [5,null,6,7,8]
+    const list = [1,2,2,3,3,null,null,4,4]
     const root = TreeNode.create(list)
     expect(isBalanced(root)).toEqual(false)
   })
