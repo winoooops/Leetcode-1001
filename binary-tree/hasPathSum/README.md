@@ -130,3 +130,40 @@ export function hasPathSum(root: TreeNode | null, targetSum: number) {
   return hasMet(root, targetSum - root.val)
 }
 ```
+
+### 迭代 
+这里如果单纯用一个变量存储sum的值, 需要反复进行读写, 所以考虑同样使用队列来存储和计算
+```typescript 
+export function hasPathSum(root: TreeNode | null, targetSum: number) {
+  if (!root) return false
+  const queue: Array<TreeNode | null> = []
+  let curr: TreeNode | null = root
+  let sum: number = root.val
+  let sumQueue: number[] = []
+
+
+  queue.push(curr)
+  sumQueue.push(sum)
+
+  while (queue.length) {
+    curr = queue.shift()!
+    sum = sumQueue.shift()!
+
+    if (!curr.left && !curr.right && sum === targetSum) {
+      return true
+    }
+
+    if (curr.left) {
+      queue.push(curr.left)
+      sumQueue.push(sum + curr.left.val)
+    }
+
+    if (curr.right) {
+      queue.push(curr.right)
+      sumQueue.push(sum + curr.right.val)
+    }
+  }
+
+  return false
+}
+```

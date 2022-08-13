@@ -1,25 +1,36 @@
 import { TreeNode } from "../treenode.type"
 
 export function hasPathSum(root: TreeNode | null, targetSum: number) {
-  function hasMet(node: TreeNode, sum: number): boolean {
-    if(!node.left && !node.right && sum === 0) {
+  if (!root) return false
+  const queue: Array<TreeNode | null> = []
+  let curr: TreeNode | null = root
+  let sum: number = root.val
+  let sumQueue: number[] = []
+
+
+  queue.push(curr)
+  sumQueue.push(sum)
+
+  while (queue.length) {
+    curr = queue.shift()!
+    sum = sumQueue.shift()!
+
+    if (!curr.left && !curr.right && sum === targetSum) {
       return true
     }
 
-    if(node.left) {
-      if(hasMet(node.left, sum - node.left.val)) return true
+    if (curr.left) {
+      queue.push(curr.left)
+      sumQueue.push(sum + curr.left.val)
     }
 
-    if(node.right) {
-      if(hasMet(node.right, sum - node.right.val)) return true
+    if (curr.right) {
+      queue.push(curr.right)
+      sumQueue.push(sum + curr.right.val)
     }
-
-    return false
   }
 
-
-  if(!root) return false 
-  return hasMet(root, targetSum - root.val)
+  return false
 }
 
 
