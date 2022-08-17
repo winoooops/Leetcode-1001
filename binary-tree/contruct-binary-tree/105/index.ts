@@ -8,7 +8,7 @@ export function buildTree(preorder: number[], inorder: number[]): TreeNode | nul
     let root: TreeNode = new TreeNode(preorder[preStart])
 
     // find root node in the inorder array 
-    let inIndex: number = 0 
+    let inIndex: number = inStart 
     for(let i = inStart; i <= inEnd; i++) {
       if(root.val === inorder[i]) {
         inIndex = i
