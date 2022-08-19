@@ -25,7 +25,7 @@ export class TreeNode {
         curr = queue.shift()!
       } 
 
-      if(!list[i]) {
+      if(list[i] === null) {
         node = null;
       } else {
          node = new TreeNode(list[i])
