@@ -15,3 +15,17 @@ export function findLCA(node: TreeNode | null, p: number, q: number): TreeNode |
 }
 
 
+export function findBSTLCA(node: TreeNode | null, p: number, q: number): TreeNode | null {
+  if(!node) return null 
+
+  let left: number = Math.min(p, q)
+  let right: number = Math.max(p, q)
+
+  if(node.val >= left && node.val <= right) return node
+
+  if(node.val < left) return findBSTLCA(node.right, p, q)
+
+  if(node.val > right) return findBSTLCA(node.left, p, q)
+}
+
+

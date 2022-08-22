@@ -1,5 +1,5 @@
 import { TreeNode } from "../treenode.type"
-import { findLCA } from "./index"
+import { findBSTLCA, findLCA } from "./index"
 
 describe("Leetcode 236: Find LCA", () => {
   it("should be 3", () => {
@@ -13,5 +13,18 @@ describe("Leetcode 236: Find LCA", () => {
     const result = findLCA(root, 5, 4)
 
     expect(findLCA(root, 5, 4)).toEqual(test)
+  })
+})
+
+describe("Leetcode 235: Find LCA in BST", () => {
+  it("should be 6", () => {
+    const root = TreeNode.create([6,2,8,0,4,7,9,null,null,3,5])
+    expect(findBSTLCA(root, 2, 8)).toEqual(root)
+  })
+
+  it("should be 4", () => {
+    const root = TreeNode.create([6,2,8,0,4,7,9,null,null,3,5])
+    const test = TreeNode.create([2,0,4,null,null,3,5])
+    expect(findBSTLCA(root, 2, 4)).toEqual(test)
   })
 })
