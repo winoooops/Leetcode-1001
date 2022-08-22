@@ -32,3 +32,49 @@ export function deleteNode(node: TreeNode | null, key: number): TreeNode | null 
   // bubble up 
   return node
 }
+
+export function deleteNode2(node: TreeNode | null, key: number): TreeNode | null {
+  let prev: TreeNode | null = null;
+  let curr: TreeNode | null = node;
+
+  while (curr) {
+    // 如果相等, 退出循环
+    if (curr.val === key) break;
+    prev = curr
+    // 如果当前节点的值比目标大, 搜索左子树; 否则搜索右子树
+    if (curr.val > key) {
+      curr = curr.left
+    } else {
+      curr = curr.right
+    }
+  }
+
+  if (!curr) return curr
+
+  // 如果为头节点
+  if (!prev) {
+    return removeNode(curr)
+  }
+
+  if (prev.val < key) {
+    prev.right = removeNode(curr)
+  } else if (prev.val > key) {
+    prev.left = removeNode(curr)
+  }
+
+  return node
+}
+
+export function removeNode(node: TreeNode): TreeNode | null {
+  if (!node.left && !node.right) return null
+  if (!node.left) return node.right
+  if (!node.right) return node.left
+
+  let leftBottomNode: TreeNode = node.right
+
+  while (leftBottomNode.left) {
+    leftBottomNode = leftBottomNode.left
+  }
+  leftBottomNode.left = node.left
+  return node.right
+}

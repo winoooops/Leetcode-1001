@@ -26,6 +26,7 @@
 5. 节点的左右子树均不为空, **将删除节点的左子树头节点放到删除节点的右子树的最左面节点的左子树上**，返回删除节点右孩子为新的根节点。
     ![delete-bst](../../static/img/binary-tree/delete-bst.gif)
 
+### 递归法
 ```typescript 
 export function deleteNode(node: TreeNode | null, key: number): TreeNode | null {
   // if not found, return null, stop the recursion with null
@@ -60,3 +61,8 @@ export function deleteNode(node: TreeNode | null, key: number): TreeNode | null 
   return node
 }
 ```
+
+
+### 迭代法 
+
+
