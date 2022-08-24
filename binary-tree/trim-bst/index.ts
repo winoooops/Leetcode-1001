@@ -17,7 +17,7 @@ export function trimBST2(root: TreeNode | null, left: number, right: number): Tr
   if (!root) return root
 
   // 处理头结点，让root移动到[L, R] 范围内，注意是左闭右闭
-  while (root.val < left || root.val > right) {
+  while (root && (root.val < left || root.val > right)) {
     if (root.val < left) root = root.right
     if (root.val > right) root = root.left
   }
