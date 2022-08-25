@@ -15,23 +15,23 @@
 
 ```tsx
 function backTracking(args: any[]): void {
-	// 中止条件 
-	if(condition) {
+  // 中止条件 
+  if(condition) {
     /****
     * Do something here 
     ****/
-		return  
-	}
+    return  
+  }
   
-	// 单层搜索处理的逻辑
-	for(/* 树中元素 */) {
-		// 处理节点
-    
-		// 递归 
-		backTracking(/*...参数...*/)
+  // 单层搜索处理的逻辑
+  for(/* 树中元素 */) {
+    // 处理节点
 
-		// 回溯, 撤销处理结果(恢复现场)
-	}
+    // 递归 
+    backTracking(/*...参数...*/)
+
+    // 回溯, 撤销处理结果(恢复现场)
+  }
 }
 ```
 
