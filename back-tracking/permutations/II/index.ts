@@ -27,5 +27,4 @@ export function permutationsII(nums: number[]): number[][] {
   backTrack()
 
   return results
-
 }

@@ -112,3 +112,23 @@ export function permutationsII(nums: number[]): number[][] {
 }
 ```
 
+## 拓展: 去重 
+
+在以上的代码中, 最为关键的树层去重的代码为
+```typescript
+if(i > 0 && nums[i] === nums[i-1] && used[i - 1] === false) { /*...*/ }
+```
+数层去重用树状图来理解的话是下面这样的: 
+![level](../../static/img/back-tracking/lvl.png)
+
+如果改成下面的也是正确的(实质上是树枝去重)
+```typescript
+if(i > 0 && nums[i] === nums[i-1] && used[i - 1] === true) { /*...*/ }
+```
+树枝去重用树状图来理解是这样的: 
+![tree](../../static/img/back-tracking/tree.png)
+
+**总结: 树枝去重的效率没有树层去重高**.
+
+
+
