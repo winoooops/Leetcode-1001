@@ -21,6 +21,42 @@
 
 ## 思路 
 
+### 贪心
+> 不能让**“连续和”为负数**的时候加上下一个元素，而不是**不让“连续和”加上一个负数**。
+
 贪心所在处: 当最大连续和为负数的时候抛弃, 因为负数只会拉低总和所以需要立即放弃. 如此一来, 全局就能够取到最大和. 
 
+
+```typescript 
+export function maxSubArray(nums: number[]): number {
+  let sum: number = 0 
+  let result: number = -Infinity
+
+  for(let i = 0; i < nums.length ;i++) {
+    sum += nums[i]
+    result = Math.max(result, sum)
+    if(sum < 0) sum = 0
+  }
+
+  return result
+}
+```
+
+### 动态规划
+```typescript 
+export function maxSubArrayWithDP(nums: number[]): number {
+  if(!nums.length) return 0
+
+  let result = nums[0]
+  const dp: number[] = []
+  dp[0] = nums[0]
+
+  for(let i = 1; i < nums.length; i++) {
+    dp[i] = Math.max(dp[i - 1] + nums[i], nums[i])
+    result = Math.max(result, dp[i])
+  }
+
+  return result
+}
+```
 
