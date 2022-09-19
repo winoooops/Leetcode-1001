@@ -30,6 +30,28 @@
 
 这样就能够从局部最优推出全局最优-- 相邻的孩子中, 评分高的孩子获得更多的糖果.
 
+```typescript
+export function candy(ratings: number[]): number {
+
+  const candies: number[] = new Array(ratings.length).fill(1)
+
+  for(let i = 1; i < ratings.length; i++) {
+    if(ratings[i] > ratings[i - 1]) {
+      candies[i] = candies[i - 1] + 1
+    }   
+  }
+
+
+  for(let i = ratings.length - 2; i >= 0; i--) {
+    if(ratings[i] > ratings[i + 1]) {
+      candies[i] = Math.max(candies[i], candies[i + 1] + 1) 
+    }
+  }
+
+  return candies.reduce((prev, curr) => prev + curr)
+}
+```
+
 
 
 
