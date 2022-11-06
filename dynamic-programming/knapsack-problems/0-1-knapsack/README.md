@@ -7,11 +7,11 @@
 
 
 有n件物品和一个最多能背重量为w 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。
-![knapsack problems](../../static/img/dp/knapsack-problems-1.jpg)
+![knapsack problems](../../../static/img/dp/knapsack-problems-1.jpg)
 
 ### DP五部曲
 
-![knapsack cells](../../static/img/dp/knapsack-problems-2.jpg)
+![knapsack cells](../../../static/img/dp/knapsack-problems-2.jpg)
 * 如果背包的重量来4, 那么我需要取什么样物品0, 物品1和物品2的组合来获得最大重量.
 
 
@@ -25,9 +25,13 @@
    * 如果背包总和 `j` 为0, 就是不存放物品, 那么 `dp[i][0] = 0` 
    * 因为第一次总是会存放 下标为0 的物品, 即 `i` 为 0, 如果 `j >= weight[0]`, `dp[0][j] = value[0]`; 如果 `j < weight[0]`, 那么 `dp[0][j] = 0`; 
    * 对于其他的地方, 初始值设为 0 即可;
-4. 
+4. 有两个遍历的维度, 物品和背包数量, 先遍历物品. 
+5. 如下图
+   ![knapsack-3](../../../static/img/dp/knapsack-problems-3.jpg)
 
 
+
+### 完整代码 
 
 ```typescript 
 export function knapsack(weight: number[], value: number[], size: number): number {
@@ -52,6 +56,4 @@ export function knapsack(weight: number[], value: number[], size: number): numbe
   }
   return dp[weight.length - 1][size]
 }
-
-console.log(knapsack([1, 3, 4, 5], [15, 20, 30, 55], 6))
 ```
