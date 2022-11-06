@@ -19,3 +19,9 @@
 3. dp数组的初始化
 4. 确定遍历顺序
 5. 举例推倒
+
+## 动态规划的本质
+
+> **Alwasy look for recursive relations within the primary problem.**
+
+动态规划的本质并不是创造DP数组, 而是把问题转换成子问题(subproblems), 而每一个子问题都能借助上一个子问题来解决. 
