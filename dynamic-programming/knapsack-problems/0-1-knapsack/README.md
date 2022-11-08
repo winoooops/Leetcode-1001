@@ -57,3 +57,30 @@ export function knapsack(weight: number[], value: number[], size: number): numbe
   return dp[weight.length - 1][size]
 }
 ```
+
+## 0/1 背包的一维DP数组 
+
+注意到之前的`dp[i][j]` 其实都可以用`dp[j]`来表示, 其中j依旧代表背包重量. s
+
+1. `dp[j]` 中表示容量为 `j`的背包, 所背的物品价值最大为dp[j]
+2. 递推公式: 原本的重量为j, 放入了重量为weight[i]的物品之后, 重量变为`j - weight[i]`, 其所对应的价值为 `dp[j - weight[i]]`. 所以如果当前需要放入物品的话, `dp[j] = dp[j - weight[i]] + value[i]`; 如果当前不放入物品的话, 价值就是`dp[j]`. 所以合起来就是`dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i])`
+3. 初始化: 背包重量为0的时候, 最大价值也为0, 所以`dp[0] = 0`; 根据推导公式 `dp[j] = dp[j - weight[i]] + value[i]`. 
+4. 遍历顺序, 先遍历物品, 再遍历重量, 双层嵌套递归. 这里需要注意的是, 这里的背包容量是需要从大到小来的(根据递推公式可知). 
+5. 
+
+
+```typescript
+export function knapsackTwo(weight: number[], value: number[], size: number): number {
+  const dp: number[] = new Array(size + 1).fill(0);
+
+  dp[0] = 0;
+
+  for (let i = 0; i < weight.length; i++) {
+    for (let j = size; j >= weight[i]; j--) {
+      dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i])
+    }
+  }
+
+  return dp[size];
+}
+```
