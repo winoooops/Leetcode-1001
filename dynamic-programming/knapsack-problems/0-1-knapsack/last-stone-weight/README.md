@@ -33,7 +33,7 @@
 2. 如果敲击后剩下一个石头, 那么 为了让最终的石头最小, 那么我们同样可以把石头分成两堆, 只要这**两堆石头重量的差值最小**就可以
 
 
-> 要想满足最终剩下的石头为最小重量, 那么就需要首先 *尽量* 把两堆石头分成 **相同的重量**, 这样互相敲击之后就是最小的. 于是这道题目就和 416. 分割等和子集 十分类似了. 
+> 要想满足最终剩下的石头为最小重量, 那么就需要首先 *尽量* 把两堆石头分成 **相同的重量**, 这样互相敲击之后就是最小的. 于是这道题目就和 [416. 分割等和子集](/dynamic-programming/knapsack-problems/0-1-knapsack/partition-equal-subset-sum/) 十分类似了. 
 
 ### 动规五部曲
 
@@ -58,12 +58,9 @@ export function lastStoneWeightII(stone: number[]): number {
 
   // 因为 optimalSize = Math.floor(sum / 2) 向下取整
   // 所以 sum - dp[optimalSize] >= dp[optimalSize]
-  // 一堆石头的总重量是 dp[optimalSize] 另一堆是 dp[optimalSize]
+  // 一堆石头的总重量是 dp[optimalSize] 另一堆是 sum - dp[optimalSize]
   // 所以最小重量就是 (sum - dp[optimalSize]) - dp[optimalSize]
 
   return sum - dp[optimalSize] - dp[optimalSize];
 }
 ```
-
-
-
