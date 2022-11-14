@@ -6,8 +6,8 @@ describe("Leetcode 494: Find Target Sum Ways", () => {
     expect(findTargetSumWays(nums, 3)).toBe(5);
   });
 
-  it("should be 1", () => {
-    const nums = [1];
-    expect(findTargetSumWays(nums, 1)).toBe(1);
+  it("should be 0", () => {
+    const nums = [7, 9, 3, 8, 0, 2, 4, 8, 3, 9];
+    expect(findTargetSumWays(nums, 0)).toBe(0);
   });
 });

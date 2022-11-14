@@ -34,11 +34,11 @@
 
 这里可以把串联的过程分成 `"+"` 的一半, 和 `"-"` 的另一半. 
 
-假设 `X` 为加法的总和, 那么 `sum - X`就是减法的总和, 为了满足题意, 我们需要找到 `X + sum - X = target`的集合, 那么也就是说加法的那一半 `X = (target - sum) / 2`. 
+假设 `X` 为加法的总和, 那么 `sum - X`就是减法的总和, 为了满足题意, 我们需要找到 `X - (sum - X) = target`的集合, 那么也就是说加法的那一半 `X = (target + sum) / 2`. 
 
 此时需要考虑两种特殊情况, 此时是无解的. 
 
-* `(target - sum) % 2 === 1`
+* `(target + sum) % 2`
 * `Math.abs(target) > sum ` 
 
 ### 动规五部曲 
@@ -55,19 +55,16 @@
 
 ```typescript 
 export function findTargetSumWays(nums: number[], target: number): number {
-  const sum = nums.reduce((prev, curr) => prev + curr, 0);
-
-  if ((target - sum) % 2 === 1) return 0;
-  if (Math.abs(target) > sum) return 0;
-
-  const size = (target + sum) / 2;
+  const sum: number = nums.reduce((prev, curr) => prev + curr, 0);
+  if ((sum + target) % 2 || Math.abs(target) > sum) return 0;
+  const size: number = (sum + target) / 2;
   const dp: number[] = new Array(size + 1).fill(0);
 
   dp[0] = 1;
 
   for (let i = 0; i < nums.length; i++) {
     for (let j = size; j >= nums[i]; j--) {
-      dp[j] = dp[j] + dp[j - nums[i]]
+      dp[j] = dp[j] + dp[j - nums[i]];
     }
   }
 
