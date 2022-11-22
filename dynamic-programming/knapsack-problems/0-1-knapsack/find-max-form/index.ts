@@ -25,6 +25,3 @@ export function findMaxForm(strs: string[], m: number, n: number) {
 
   return dp[m][n];
 }
-
-console.log(findMaxForm(["10", "0001", "111001", "1", "0"], 5, 3));
-console.log(findMaxForm(["10", "0", "1"], 1, 1));
