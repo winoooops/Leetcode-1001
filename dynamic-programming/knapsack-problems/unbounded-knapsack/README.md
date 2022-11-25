@@ -47,3 +47,41 @@ export function unboundedKnapsack(weight: number[], value: number[], size: numbe
 
 
 > 扩展: 把递推公式压缩之后会发现 `dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]`, 这个公式和0/1背包的递推公式一模一样. **注意我们在0/1背包时候采用的是倒序遍历, 在完全背包中需要用正序遍历.**
+
+#### 一维DP
+```typescript
+export function realTrick(weight: number[], value: number[], size: number): number {
+  const dp: number[] = new Array(size + 1).fill(0);
+
+  for (let i = 0; i < weight.length; i++) {
+    for (let j = weight[i]; j <= size; j++) {
+      dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);
+    }
+  }
+
+  return dp[size];
+}
+```
+
+#### 二维DP
+
+```typescript
+export function realTrick(weight: number[], value: number[], size: number): number {
+  const dp: number[][] = new Array(weight.length).fill(0).map(_ => new Array(size + 1).fill(0));
+
+  for (let j = 0; j <= size; j++) {
+    let count = Math.floor(j / weight[0]);
+    dp[0][j] = value[0] * count;
+  }
+
+  for (let i = 1; i < weight.length; i++) {
+    for (let j = 0; j <= size; j++) {
+      if (j >= weight[i]) {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - weight[i]] + value[i]);
+      }
+    }
+  }
+
+  return dp[weight.length - 1][size];
+}
+```
