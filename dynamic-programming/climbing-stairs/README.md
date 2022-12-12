@@ -48,4 +48,28 @@ export function climbStairs(n: number): number {
 }
 ```
 
+## 进阶
+
+如果把题目改为一步一个台阶，两个台阶，三个台阶，.......，直到 m个台阶。问有多少种不同的方法可以爬到楼顶呢？那么此时就是一个完全背包问题的排列（不同顺序有差）问题。
+
+```
+export function climbStairsAd(n: number, m: number): number {
+  // n is the nth stairs one want to reach  
+  // m is how many steps one can take 
+  const dp: number[] = new Array(m).fill(0);
+  dp[0] = 1
+
+  // because this is a combination prob, loop the weight first, then the items
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      if (i >= j) {
+        dp[i] = dp[i] + dp[i - j];
+      }
+    }
+  }
+
+  return dp[n];
+}
+```
+
  
