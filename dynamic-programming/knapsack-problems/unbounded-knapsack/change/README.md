@@ -103,3 +103,21 @@ export function change(coins: number[], amount: number): number {
 3. 初始化：凑足总金额为0的硬币数量一定是0，所以`dp[0] = 0`; 因为到时候需要用递推公式取最小值，所以dp的每一个元素需要用`-Infinity`做初始值
 4. 因为是组合问题， 所以先遍历硬币， 再遍历背包重量。
 5. 例子： 
+
+```typescript 
+export function coinChange(coins: number[], amount: number): number { 
+  const sum = coins.reduce((prev, curr) => prev + curr, 0);
+
+  const dp: number[] = new Array(amount + 1).fill(Infinity);
+
+  dp[0] = 0; 
+
+  for (let i = 0; i < coins.length; i++) {
+    for (let j = coins[i]; j <= amount; j++) {
+      dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+    }
+  }
+
+  return dp[amount] === Infinity ? -1 : dp[amount];
+}
+```
