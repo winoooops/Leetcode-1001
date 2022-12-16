@@ -59,4 +59,34 @@ export function wordBreakWithBackTracking(s: string, wordDict: string[]): boolea
 ```
 
 ### 完全背包 
- 
+
+注意到字典中的单词可以重复使用, 并且判断目标字符串是否只由字典中的单词组成. 所以可以通过转化成完全背包解题. 
+
+#### 动态规划5部曲 
+
+1. 定义`dp: boolean[]`, 那么 `dp[j]` 中表示 目标为`j`的字符串 是否能够恰好由字典中的单词组成. 
+2. 遍历顺序: 因为字符串只能有一种顺序, 所以这里是排列问题, 所以就要先遍历背包重量`j`, 再遍历
+3. 递推公式: 满足条件的情况是, 截取出来的单词`s.substring(i, j)`恰好在字典中, 并且`dp[i]`, 即这个单词开始前`dp[i] === true`(这样才能满足恰好由字典中的单词组成)
+4. 初始化: 因为判断的条件`dp[i] === true`, 也就是初始的时候需要保证 `dp[0] === true`; dp数组中的其他元素初始值为 `false`
+5. 实例
+   ![139-example](/static/img/dp/139.jpg)
+
+
+```typescript 
+export function wordBreak(s: string, wordDict: string[]): boolean {
+  const dp: boolean[] = new Array(s.length + 1).fill(false);
+
+  dp[0] = true
+
+  for (let j = 0; j <= s.length; j++) {
+    for (let i = 0; i <= s.length; i++) {
+      let word: string = s.substring(j, i);
+      if (wordDict.includes(word) && dp[j]) {
+        dp[i] = true;
+      }
+    }
+  }
+
+  return dp[s.length];
+}
+```

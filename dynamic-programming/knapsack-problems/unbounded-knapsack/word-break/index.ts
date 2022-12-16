@@ -13,11 +13,28 @@ export function wordBreakWithBackTracking(s: string, wordDict: string[]): boolea
         return true
       }
     }
-    
+
     // reset to last state
     memory[index] = false
     return false;
   }
 
   return backTracking(0, memory);
+}
+
+export function wordBreak(s: string, wordDict: string[]): boolean {
+  const dp: boolean[] = new Array(s.length + 1).fill(false);
+
+  dp[0] = true
+
+  for (let j = 0; j <= s.length; j++) {
+    for (let i = 0; i <= s.length; i++) {
+      let word: string = s.substring(j, i);
+      if (wordDict.includes(word) && dp[j]) {
+        dp[i] = true;
+      }
+    }
+  }
+
+  return dp[s.length];
 }
