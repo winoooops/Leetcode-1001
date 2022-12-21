@@ -52,7 +52,7 @@ export function climbStairs(n: number): number {
 
 如果把题目改为一步一个台阶，两个台阶，三个台阶，.......，直到 m个台阶。问有多少种不同的方法可以爬到楼顶呢？那么此时就是一个完全背包问题的排列（不同顺序有差）问题。
 
-```
+```typescript
 export function climbStairsAd(n: number, m: number): number {
   // n is the nth stairs one want to reach  
   // m is how many steps one can take 

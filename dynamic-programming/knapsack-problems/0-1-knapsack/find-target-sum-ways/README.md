@@ -39,7 +39,7 @@
 
 此时需要考虑两种特殊情况, 此时是无解的. 
 
-* `(target + sum) % 2`
+* `(target + sum) % 2 !== 0`(因为JS引擎的原因, 在if中等同于`(target + sum) % 2`)
 * `Math.abs(target) > sum ` 
 
 ### 动规五部曲 
