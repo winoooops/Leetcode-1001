@@ -142,4 +142,17 @@ function helper(nums: number[]): number {
 ![tree2](/static/img/dp/rob3-tree2.jpg)
 
 ### 思路 
-
+#### 递归三部曲 
+1. 递归函数需要的参数和返回值: 参数为当前节点 `treeNode`, 返回的数组就是`dp`数组, 只需要为二维数组, 即只含有两个元素 `dp[0]` 和 `dp[1]`
+    * `dp[0]` 表示不选取当前节点能够获取的最大值    
+    * `dp[1]` 表示选取当前节点能够获取的最大值
+  > 因为在二叉树递归的过程中, 系统实际上会记录下每一层递归的参数, 所以一个长度为2的dp即可记录.
+2. 确定终止条件: `if(!treeNode) return [0, 0]`
+3. 二叉树的遍历顺序: 因为需要对左右子节点递归返回回来的值进行计算: 通过递归左节点，得到左节点偷与不偷的金钱; 通过递归右节点，得到右节点偷与不偷的金钱。
+`let left = rob(treeNode.left); let right = rob(treeNode.right)`
+4. 单层递归的逻辑: 
+  * 如果偷当前节点: `dp[1] = treeNode.val + left[0] + right[0]`
+  * 如果不偷当前节点: `dp[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1])`
+  最后返回dp:
+5. 推导dp数组
+  ![house-robber](/static/img/dp/337.jpg)
