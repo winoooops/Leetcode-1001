@@ -142,7 +142,8 @@ function helper(nums: number[]): number {
 ![tree2](/static/img/dp/rob3-tree2.jpg)
 
 ### 思路 
-#### 递归三部曲 
+
+#### 递归三部曲(动态规划) 
 1. 递归函数需要的参数和返回值: 参数为当前节点 `treeNode`, 返回的数组就是`dp`数组, 只需要为二维数组, 即只含有两个元素 `dp[0]` 和 `dp[1]`
     * `dp[0]` 表示不选取当前节点能够获取的最大值    
     * `dp[1]` 表示选取当前节点能够获取的最大值
@@ -156,3 +157,28 @@ function helper(nums: number[]): number {
   最后返回dp:
 5. 推导dp数组
   ![house-robber](/static/img/dp/337.jpg)
+
+```typescript 
+export function rob(treeNode: TreeNode): number {
+  let dp: number[] = helper(treeNode);
+
+  return Math.max(dp[0], dp[1])
+}
+
+export function helper(treeNode: TreeNode | null): number[] {
+  if (!treeNode) return [0, 0];
+
+  let left = helper(treeNode.left);
+  let right = helper(treeNode.right);
+
+  // take the current node, so not taking its child 
+  let TAKE = treeNode.val + left[0] + right[0];
+
+  // not taking the current node 
+  // i can either take or not take the child treenodes 
+  let NOTAKE = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+
+  return [NOTAKE, TAKE];
+}
+
+```
