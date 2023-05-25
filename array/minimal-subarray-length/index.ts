@@ -17,3 +17,15 @@ export function minSubArrayLen(nums: number[], target: number) {
 
   return result > length ? 0 : result
 }
+
+// [2,3,1,2,4,3] 7
+// left, right, sum, result
+// 0 0 2 8
+// 0 1 5 8
+// 0 2 6 8 
+// 0 3 8 4 
+// 1 4 10 4 
+// 2 4 7 3
+// 3 5 9 3 
+// 4 5 7 2
+

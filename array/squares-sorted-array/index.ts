@@ -1,21 +1,23 @@
 export function sortSquares(nums: number[]): number[] {
-  const length = nums.length 
-  const result: number[]= new Array(length)
+  const length = nums.length;
+  const result: number[] = [];
 
-  let i = 0
-  let j = length - 1 
-  let k = length - 1
+  let left = 0;
+  let right = length - 1;
+  let k = length - 1;
 
-  while(i <= j) {
-    if(Math.abs(nums[i]) > Math.abs(nums[j])) {
-      result[k] = nums[i] * nums[i]
-      i ++
+  while (left <= right) {
+    if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+      result[k] = nums[left] * nums[left];
+      left++;
     } else {
-      result[k] = nums[j] * nums[j]
-      j --
+      result[k] = nums[right] * nums[right];
+      right--;
     }
-    k--
+    k--;
   }
 
-  return result
+  return result;
 }
+
+console.log(sortSquares([-4, -1, 0, 3, 10]));

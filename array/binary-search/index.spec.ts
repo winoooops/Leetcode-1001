@@ -16,6 +16,6 @@ describe("Binary Search", () => {
    it('should return correct index', () => {
     const nums = [-1, 0, 5]
     const target = 0
-    expect(BinarySearch(nums, target)).toBe(2)
+    expect(BinarySearch(nums, target)).toBe(1)
   })
 })
