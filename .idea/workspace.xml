@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="01898f05-12c4-473d-b422-3881db7693c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode1001/LeetCode1001.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Leetcode-1001.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Leetcode-1001/Leetcode-1001.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/BinarySearch/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/BinarySearch/SolutionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/MinSizeSubarraySum/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/MinSizeSubarraySum/SolutionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/RemoveElement/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/RemoveElement/SolutionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/SpiralMatrix/I/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/SpiralMatrix/I/SolutionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/SquareSortedArray/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/SquareSortedArray/SolutionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/array.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/static.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests_/07.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests_/08.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests_/09.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests_/10.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/binary-search/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/BinarySearch/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/binary-search/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/binary-search/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/minimal-subarray-length/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/MinSizeSubarraySum/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/minimal-subarray-length/index.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/minimal-subarray-length/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/remove-element/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/RemoveElement/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/remove-element/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/remove-element/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/remove-element/two-index.gif" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/two-index.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/1/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/1/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/1/spiral1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/spiral1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/1/spiral2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/spiral2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/2/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/2/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/2/spiral-solution.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/spiral-solution.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/2/spiral.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/spiral.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/3/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/3/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/3/spiral3.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/spiral3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/3/steps.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/array/steps.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/spiral-matrix/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/SpiralMatrix/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/squares-sorted-array/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/SquareSortedArray/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/squares-sorted-array/index.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/squares-sorted-array/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Q3D3nPXQXwMNkVk4PSWo6YlBd5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Code/Leetcode-1001&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\Program Files\\JetBeans\\IntelliJ IDEA 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Code\Leetcode-1001\static\img\array" />
+      <recent name="F:\Code\Leetcode-1001\array\SpiralMatrix" />
+      <recent name="F:\Code\Leetcode-1001\array\SquareSortedArray" />
+      <recent name="F:\Code\Leetcode-1001\array\src\RemoveElement" />
+      <recent name="F:\Code\Leetcode-1001\array\src\BinarySearch" />
+    </key>
+  </component>
+  <component name="RubyModuleManagerSettings">
+    <option name="blackListedRootsPaths">
+      <list>
+        <option value="$PROJECT_DIR$" />
+        <option value="$PROJECT_DIR$/array" />
+        <option value="$PROJECT_DIR$/array/src" />
+        <option value="$PROJECT_DIR$/LeetCode1001" />
+        <option value="$PROJECT_DIR$/Leetcode-1001" />
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.SolutionTest">
+    <configuration name="SolutionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SquareSortedArray.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SquareSortedArray" />
+      <option name="MAIN_CLASS_NAME" value="SquareSortedArray.SolutionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolutionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SpiralMatrix.I.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SpiralMatrix.I" />
+      <option name="MAIN_CLASS_NAME" value="SpiralMatrix.I.SolutionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolutionTest.testSpiralMatrixOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SpiralMatrix.I.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SpiralMatrix.I" />
+      <option name="MAIN_CLASS_NAME" value="SpiralMatrix.I.SolutionTest" />
+      <option name="METHOD_NAME" value="testSpiralMatrixOne" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolutionTest.testSpiralMatrixTwo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SpiralMatrix.I.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SpiralMatrix.I" />
+      <option name="MAIN_CLASS_NAME" value="SpiralMatrix.I.SolutionTest" />
+      <option name="METHOD_NAME" value="testSpiralMatrixTwo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolutionTest.testSqureSortedArray" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SquareSortedArray.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SquareSortedArray" />
+      <option name="MAIN_CLASS_NAME" value="SquareSortedArray.SolutionTest" />
+      <option name="METHOD_NAME" value="testSqureSortedArray(java.lang.String,java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Leetcode-1001" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Leetcode-1001" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SolutionTest" />
+        <item itemvalue="JUnit.SolutionTest.testSpiralMatrixTwo" />
+        <item itemvalue="JUnit.SolutionTest.testSpiralMatrixOne" />
+        <item itemvalue="JUnit.SolutionTest (1)" />
+        <item itemvalue="JUnit.SolutionTest.testSqureSortedArray" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01898f05-12c4-473d-b422-3881db7693c7" name="Changes" comment="" />
+      <created>1684573175251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684573175251</updated>
+      <workItem from="1684573176623" duration="656000" />
+      <workItem from="1684807135249" duration="1777000" />
+      <workItem from="1684982556341" duration="2624000" />
+      <workItem from="1684986223214" duration="13428000" />
+      <workItem from="1685068140323" duration="1972000" />
+      <workItem from="1685072592998" duration="83000" />
+      <workItem from="1685072813050" duration="532000" />
+      <workItem from="1685074241356" duration="39000" />
+      <workItem from="1685074291623" duration="137000" />
+      <workItem from="1685074479751" duration="1308000" />
+      <workItem from="1685076147362" duration="239000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
