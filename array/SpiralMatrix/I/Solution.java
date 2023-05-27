@@ -50,7 +50,7 @@ public class Solution {
         int colBegin = 0;
         int colEnd = matrix[0].length - 1;
 
-        while(rowBegin <= rowEnd && colBegin <= colEnd) {
+        while(rowBegin < rowEnd && colBegin < colEnd) {
             for(int i = colBegin; i < colEnd; i++) {
                 result.add(matrix[rowBegin][i]);
             }
@@ -71,7 +71,6 @@ public class Solution {
             rowEnd--;
             colBegin++;
             colEnd--;
-
         }
 
         // 当较小的内圈为奇数时, 固定会剩内圈
@@ -86,7 +85,6 @@ public class Solution {
                 }
             }
         }
-
 
         return result;
     }
