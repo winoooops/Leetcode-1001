@@ -1,4 +1,4 @@
-package RemoveElement;
+package RemoveElement.RemoveElement;
 
 public class Solution {
     public int RemoveElement(int[] nums, int target) {

@@ -286,4 +286,148 @@ export function spiralMatrixThree(R: number, C: number, r0: number, c0: number) 
 
   return result
 }
+
+```
+
+# 2326.螺旋矩阵IV
+给你两个整数：m 和 n ，表示矩阵的维数。
+
+另给你一个整数链表的头节点 head 。
+
+请你生成一个大小为 m x n 的螺旋矩阵，矩阵包含链表中的所有整数。链表中的整数从矩阵 左上角 开始、顺时针 按 螺旋 顺序填充。如果还存在剩余的空格，则用 -1 填充。
+
+返回生成的矩阵。
+
+
+## 示例
+
+![example1](../../static/img/array/spiralMatrix4-1.jpg)
+```
+输入：m = 3, n = 5, head = [3,0,2,6,8,1,7,9,4,2,5,5,0]
+输出：[[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]
+解释：上图展示了链表中的整数在矩阵中是如何排布的。
+注意，矩阵中剩下的空格用 -1 填充。
+```
+
+
+![example2](../../static/img/array/spiralMatrix4-2.jpg)
+```
+输入：m = 1, n = 4, head = [0,1,2]
+输出：[[0,1,2,-1]]
+解释：上图展示了链表中的整数在矩阵中是如何从左到右排布的。
+注意，矩阵中剩下的空格用 -1 填充。
+```
+
+## 思路
+
+### 模拟法
+通过模拟遍历举证
+* 按照顺时针方向将链表的节点值填入矩阵, 当移动到边界的时候顺时针调整方向
+* 将矩阵的所有元素初始化为`-1`, 如果不为`-1`, 那么代表该位置已被访问
+* 通过判断当前节点同方向的下个节点是否在范围内(并且节点值不为-1)来判断是否调转方向
+
+> 时间复杂度`O(m * n)`, 因为需要遍历每一个元素并填充值
+> 空间复杂度`O(1)`
+
+```java
+public class Solution {
+    private final int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    public int[][] SpiralMatrixIV(int m, int n, ListNode head){
+        int[][] result = new int[m][n];
+        for(int i = 0; i < m; i++) {
+            Arrays.fill(result[i], -1);
+        }
+
+        ListNode temp = head;
+        int dirIdx = 0;
+        int rowAt = 0;
+        int colAt = 0;
+
+        while(temp != null) {
+            // should update the values in the result
+            result[rowAt][colAt] = temp.val;
+            temp = temp.next;
+
+            int rowCandidate = rowAt + directions[dirIdx][0];
+            int colCandidate = colAt + directions[dirIdx][1];
+            // determine if the direction need to be changed
+            if(
+                    rowCandidate < 0 ||
+                    colCandidate < 0 ||
+                    rowCandidate >= m ||
+                    colCandidate >= n ||
+                    result[rowCandidate][colCandidate] != -1
+            ) {
+                dirIdx = (dirIdx + 1) % 4;
+            }
+            rowAt += directions[dirIdx][0];
+            colAt += directions[dirIdx][1];
+        }
+
+        return result;
+    }
+}
+
+```
+
+### 遍历法
+可以使用按层遍历的思想. 
+* 按层数遍历2D数组, 然后统一附上初始值-1
+* 定义4个边界分别为`top, bottom, left, right`, 然后根据移动的方向填充值, 方向结束后压缩矩阵
+    * 从left到right,依次遍历 `result[top][index]` 填充值, 最后top++
+    * 从top到bottom,依次遍历 `result[index][right]` 填充值, 最后right--
+    * 从right到left,依次遍历 `result[bottom][index]` 填充值, 最后bottom--
+    * 从bottom到top,依次遍历 `result[index][left]` 填充值, 最后left++
+    * 注意特殊情况下, 需要算多出来的内部区域
+
+```java
+public class Solution {
+    public int[][] SpiralMatrixIVTwo(int m, int n, ListNode head)
+    {
+        int[][] result = new int[m][n];
+
+        for(int i = 0; i < m; i++) {
+            Arrays.fill(result[i], -1);
+        }
+
+        int top = 0;
+        int bottom = m - 1;
+        int left = 0;
+        int right = n - 1;
+        ListNode temp = head;
+
+        while(temp != null) {
+            for(int i = left; i <= right && temp != null; i++) {
+                result[top][i] = temp.val;
+                temp = temp.next;
+            }
+            top++;
+
+            for(int j = top; j <= bottom && temp != null; j++) {
+                result[j][right] = temp.val;
+                temp = temp.next;
+            }
+            right--;
+
+            if(top <= bottom) {
+                for(int x = right; x >= left && temp != null; x--) {
+                    result[bottom][x] = temp.val;
+                    temp = temp.next;
+                }
+                bottom--;
+            }
+
+            if(left <= right) {
+                for(int y = bottom; y >= top && temp != null; y--) {
+                    result[y][left] = temp.val;
+                    temp = temp.next;
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+}
+
 ```

@@ -86,3 +86,123 @@ export function removeElement(nums: Number[], target: Number) {
   return index
 }
 ```
+
+# 26.从有序数组中移除重复元素
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once.
+
+The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+
+## 示例
+```
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2,_]
+Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+```
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+## 思路
+* 考虑到最后需要返回的是有几个不重复的元素, 所以使用双指针解题. 
+* 和删除重复元素类似, 如果两者不同那么都移动指针并且`nums[slow] = nums[fast]`; 如果相同, 那么慢指针不变, 快指针继续移动知道两者再次不同.
+
+```java
+public class Solution {
+    public int removeDuplicate(int[] nums)
+    {
+        int slow = 0;
+        for(int fast = 0; fast < nums.length; fast++)
+        {
+            if(nums[fast] != nums[slow])
+            {
+                slow++;
+                nums[slow] = nums[fast];
+            }
+        }
+
+        return slow + 1;
+    }
+}
+```
+
+# 80.从有序数组中删除元素II 
+Given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that **each unique element appears at most twice**. The relative order of the elements should be kept the same.
+
+Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+
+Return k after placing the final result in the first k slots of nums.
+
+Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+
+## 示例
+```
+Input: nums = [1,1,1,2,2,3]
+Output: 5, nums = [1,1,2,2,3,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+```
+Input: nums = [0,0,1,1,1,1,2,3,3]
+Output: 7, nums = [0,0,1,1,2,3,3,_,_]
+Explanation: Your function should return k = 7, with the first seven elements of nums being 0, 0, 1, 1, 2, 3 and 3 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+```
+
+## 思路 
+### 添加重复次数
+在[26.删除重复元素]的基础上多一个是否超过2个的条件即可
+> 当数字出现第一次的时候, 重复次数已经是1了
+
+```java
+public class Solution {
+    public int removeDuplicateIITWO(int[] nums)
+    {
+        int repeat = 1;
+        int slow = 0;
+        for(int fast = 1; fast < nums.length; fast++)
+        {
+            if(repeat < 2 || nums[slow] != nums[fast]){
+                if(nums[slow] == nums[fast]){
+                    repeat++;
+                } else {
+                    repeat = 1; // if not equals, set to 1 !!!
+                }
+                nums[++slow] = nums[fast];
+            }
+        }
+
+        return slow + 1;
+    }
+}
+```
+
+### 间隔比较
+> 因为只允许2个或以内的相同, 也就是说只要比较比较相隔一个元素的两个元素是否相同即可; **中间那个元素是否相同不影响结果**.
+
+```java
+public class Solution {
+    public int removeDuplicateII(int[] nums)
+    {
+        // do need to care if they are the same,
+        // just check if the 3rd is equals to the 1st
+        int slow = 2;
+
+        for(int fast = slow; fast < nums.length; fast++)
+        {
+            if(nums[fast] != nums[slow - 2])
+            {
+                nums[slow++] = nums[fast];
+            }
+
+        }
+
+        return slow + 1;
+    }
+}
+```
