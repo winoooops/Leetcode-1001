@@ -157,8 +157,30 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 ## 思路 
 ### 添加重复次数
 在[26.删除重复元素]的基础上多一个是否超过2个的条件即可
+> 当数字出现第一次的时候, 重复次数已经是1了
 
+```java
+public class Solution {
+    public int removeDuplicateIITWO(int[] nums)
+    {
+        int repeat = 1;
+        int slow = 0;
+        for(int fast = 1; fast < nums.length; fast++)
+        {
+            if(repeat < 2 || nums[slow] != nums[fast]){
+                if(nums[slow] == nums[fast]){
+                    repeat++;
+                } else {
+                    repeat = 1; // if not equals, set to 1 !!!
+                }
+                nums[++slow] = nums[fast];
+            }
+        }
 
+        return slow + 1;
+    }
+}
+```
 
 ### 间隔比较
 > 因为只允许2个或以内的相同, 也就是说只要比较比较相隔一个元素的两个元素是否相同即可; **中间那个元素是否相同不影响结果**.
