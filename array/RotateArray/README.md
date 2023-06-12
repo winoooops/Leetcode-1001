@@ -3,7 +3,6 @@ Given an integer array nums, rotate the array to the right by `k` steps,
 where k is non-negative.
 
 
-
 ## Example
 
 ```
@@ -32,7 +31,9 @@ rotate 2 steps to the right: [3,99,-1,-100]
 public class Solution {
     public void RotateArray(int[] nums, int k)
     {
-        if(nums.length <= 1) return;
+        if(nums.length == 1 || k == 0 || k == nums.length){
+          return;
+        }
 
         int rotate = 0;
         int temp;
@@ -66,6 +67,7 @@ public class Solution {
 
 ### 2.Brute Faster
 
+
 * first check k, make sure it less than `nums.length`; if k==0, should be the original nums
 * then create an array `temp` of k to store the kth element that should be rotated
 * rotate the array once, check if `idx >= k`, if so `nums[idx] = nums[idx - k]`; otherise, `nums[idx] = temp[k - idx - 1]`
@@ -77,9 +79,9 @@ public class Solution
 {
     public void rotateArray2(int[] nums, int k)
     {
-        if(k == 0) {
-            return;
-        }
+        if(nums.length == 1 || k == 0 || k == nums.length){
+          return;
+        } 
         int len = nums.length;
         int[] temp = new int[k];
 
@@ -103,10 +105,20 @@ public class Solution
 ```
 
 ### 3.Brute Optimized
+
+核心思路: 我们每处理一个位置，就跳转到 `k` 个位置之后的位置。 
+
 > Without using any additional arrays, so the space complexity is `O(1)` while the time complexity is still `O(n)` 
 
 * first check k, make sure it less than `nums.length`; if k==0, should be the original nums
-* 
+* declare `count` to keep track of numbers of elements looped, `pointer` to represent the current looped index, `prev` for last altered value, `start` for starting position
+* loop until `count == nums.length`
+  * `pointer = (pointer + k) % nums.length`
+  *  swap the value of `nums[pointer]` with `prev`
+  *  `count++`
+  * if `pointer == start`, means a cycle of rotation has finished
+    * move `start` to the next index
+    * update value of `start` and `prev`
 
 ### 4.Swap
 
@@ -116,3 +128,110 @@ public class Solution
 * divide the products into 2 arrays of length: `k` and `n - k`
 * reverse those 2 arrays
 
+```java
+public class Solution {
+  public void rotateArray3(int[] nums, int k)
+  {
+    if(nums.length == 1 || k == 0 || k == nums.length){
+      return;
+    }
+    int len = nums.length;
+    k = k % len;
+
+    int count = 0; // number of element moved.
+    int start = 0;
+    int pointer = start;
+    int prev = nums[pointer];
+    int tmp;
+
+    while(count < len)
+    {
+      pointer = (pointer + k) % len;
+      tmp = nums[pointer];
+      nums[pointer] = prev;
+      prev = tmp;
+      count++;
+
+      // when a rotation cycle is complete
+      if(pointer == start)
+      {
+        start++;
+        pointer = start;
+        prev = nums[start];
+      }
+    }
+  }
+}
+```
+
+```java
+public class Solution{
+    public void rotateArray4(int[] nums, int k)
+    {
+        if(nums.length == 1 || k == 0 || k == nums.length){
+          return;
+        }
+        if(k > nums.length){
+            k = k % nums.length;
+        }
+
+        reverse(nums, 0, nums.length-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    private void reverse(int[] nums, int left, int right)
+    {
+        int tmp;
+        while(left < right)
+        {
+            tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+            left++;
+            right--;
+        }
+    }
+
+}
+```
+
+### Bezout's Equation 
+这里需要借助的定理是--裴蜀定理(Bézout's equation).
+
+> 裴蜀定理:根据维基百科，裴蜀定理（Bézout's identity or Bézout's lemma）是数论中的一个定理，它说：对于任意两个整数a和b，以及它们的最大公约数d，存在整数x和y使得：
+> ax + by = d
+> 这个方程叫做裴蜀等式（Bézout's equation）。这个方程有整数解当且仅当d是a和b的倍数。当方程有解时，它有无穷多个整数解。可以用扩展欧几里得算法找到一个解。
+
+```java
+public class Solution {
+  public void rotateArray5(int[] nums, int k){
+    int n = nums.length;
+    k = k % n;
+    int g = gcd(k, n);
+    int count = n / g;
+
+    for(int i = 0; i < g; i++)
+    {
+      int j = i;
+      int curr = 0;
+      int prev = nums[j];
+      int temp;
+
+      while(curr < count)
+      {
+        j = (j + k) % n;
+        temp = nums[j];
+        nums[j] = prev;
+        prev = temp;
+        curr++;
+      }
+    }
+  }
+
+  private int gcd(int x, int y)
+  {
+    return y == 0 ? x : gcd(y, x % y);
+  } 
+}
+```

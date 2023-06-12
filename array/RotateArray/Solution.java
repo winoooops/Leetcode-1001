@@ -3,7 +3,9 @@ package RotateArray;
 public class Solution {
     public void rotateArray1(int[] nums, int k)
     {
-        if(nums.length <= 1) return;
+        if(nums.length == 1 || k == 0 || k == nums.length){
+            return;
+        }
 
         int rotate = 0;
         int temp;
@@ -29,9 +31,10 @@ public class Solution {
 
     public void rotateArray2(int[] nums, int k)
     {
-        if(k == 0) {
+        if(nums.length == 1 || k == 0 || k == nums.length){
             return;
         }
+
         int len = nums.length;
         int[] temp = new int[k];
 
@@ -54,7 +57,9 @@ public class Solution {
 
     public void rotateArray3(int[] nums, int k)
     {
-        if(k == 0) return;
+        if(nums.length == 1 || k == 0 || k == nums.length){
+            return;
+        }
         int len = nums.length;
         k = k % len;
 
@@ -84,7 +89,9 @@ public class Solution {
 
     public void rotateArray4(int[] nums, int k)
     {
-        if(k == nums.length) return; // it would be the same
+        if(nums.length == 1 || k == 0 || k == nums.length){
+            return;
+        }
         if(k > nums.length){
             k = k % nums.length;
         }
@@ -92,6 +99,38 @@ public class Solution {
         reverse(nums, 0, nums.length-1);
         reverse(nums, 0, k-1);
         reverse(nums, k, nums.length - 1);
+    }
+
+    public void rotateArray5(int[] nums, int k){
+        if(nums.length == 1 || k == 0 || k == nums.length){
+            return;
+        }
+       int n = nums.length;
+       k = k % n;
+       int g = gcd(k, n);
+       int count = n / g;
+
+       for(int i = 0; i < g; i++)
+       {
+           int j = i;
+           int curr = 0;
+           int prev = nums[j];
+           int temp;
+
+           while(curr < count)
+           {
+              j = (j + k) % n;
+              temp = nums[j];
+              nums[j] = prev;
+              prev = temp;
+              curr++;
+           }
+       }
+    }
+
+    private int gcd(int x, int y)
+    {
+        return y == 0 ? x : gcd(y, x % y);
     }
 
     private void reverse(int[] nums, int left, int right)

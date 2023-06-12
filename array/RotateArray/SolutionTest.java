@@ -10,7 +10,9 @@ public class SolutionTest {
     @ParameterizedTest
     @CsvSource({
             "1 2 3 4 5 6 7, 3, 5 6 7 1 2 3 4",
-            "-1 -100 3 99, 2, 3 99 -1 -100"
+            "-1 -100 3 99, 2, 3 99 -1 -100",
+            "-1, 2, -1",
+            "1 2, 2, 1 2"
     })
     void testSolutionOne(String arrayStr, int k, String expectedStr){
         Solution solution = new Solution();
@@ -24,7 +26,9 @@ public class SolutionTest {
     @ParameterizedTest
     @CsvSource({
             "1 2 3 4 5 6 7, 3, 5 6 7 1 2 3 4",
-            "-1 -100 3 99, 2, 3 99 -1 -100"
+            "-1 -100 3 99, 2, 3 99 -1 -100",
+            "-1, 2, -1",
+            "1 2, 2, 1 2"
     })
     void testSolutionTwo(String arrayStr, int k, String expectedStr){
         Solution solution = new Solution();
@@ -38,7 +42,9 @@ public class SolutionTest {
     @ParameterizedTest
     @CsvSource({
             "1 2 3 4 5 6 7, 3, 5 6 7 1 2 3 4",
-            "-1 -100 3 99, 2, 3 99 -1 -100"
+            "-1 -100 3 99, 2, 3 99 -1 -100",
+            "-1, 2, -1",
+            "1 2, 2, 1 2"
     })
     void testSolutionThree(String arrayStr, int k, String expectedStr){
         Solution solution = new Solution();
@@ -52,7 +58,9 @@ public class SolutionTest {
     @ParameterizedTest
     @CsvSource({
             "1 2 3 4 5 6 7, 3, 5 6 7 1 2 3 4",
-            "-1 -100 3 99, 2, 3 99 -1 -100"
+            "-1 -100 3 99, 2, 3 99 -1 -100",
+            "-1, 2, -1",
+            "1 2, 2, 1 2"
     })
     void testSolutionFour(String arrayStr, int k, String expectedStr){
         Solution solution = new Solution();
