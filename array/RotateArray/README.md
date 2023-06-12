@@ -120,14 +120,6 @@ public class Solution
     * move `start` to the next index
     * update value of `start` and `prev`
 
-### 4.Swap
-
-> Make sure the `k < nums.length`, if not just use the remained
-
-* reverse the whole array
-* divide the products into 2 arrays of length: `k` and `n - k`
-* reverse those 2 arrays
-
 ```java
 public class Solution {
   public void rotateArray3(int[] nums, int k)
@@ -163,6 +155,13 @@ public class Solution {
   }
 }
 ```
+### 4.Swap
+
+> Make sure the `k < nums.length`, if not just use the remained
+
+* reverse the whole array
+* divide the products into 2 arrays of length: `k` and `n - k`
+* reverse those 2 arrays
 
 ```java
 public class Solution{
