@@ -293,8 +293,264 @@ public class Solution
 }
 ```
 
+# 188. Best Time to Buy and Sell Stock IV
+     
+You are given an integer array prices where `prices[i]` is the price of a given stock on the ith day, and an integer k.
+
+Find the maximum profit you can achieve. You may complete at most k transactions: i.e. you may buy at most k times and sell at most k times.
+
+Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
 
 
 
+## Example
+
+```
+Input: k = 2, prices = [2,4,1]
+Output: 2
+Explanation: Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.
+```
+```
+Input: k = 2, prices = [3,2,6,5,0,3]
+Output: 7
+Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+```
+
+## Solution 
+
+### 二维DP
+
+> 时间复杂度`O(nk)`, 空间复杂度`O(nk)`
+
+```java
+public class Solution {
+    public int bestTimeToSell4DP(int k, int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+        int states = k * 2;
+
+        int[][] dp = new int[prices.length][states];
+
+        for (int i = 0; i < states; i++) {
+            dp[0][i] = i % 2 == 0 ? -prices[0] : 0;
+        }
+
+        for (int i = 1; i < prices.length; i++) {
+            for (int j = 0; j < states; j++) {
+                if (j % 2 == 0) {
+                    if (j == 0) {
+                        dp[i][j] = Math.max(dp[i - 1][j], -prices[i]);
+                    } else {
+                        dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] - prices[i]);
+                    }
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + prices[i]);
+                }
+            }
+        }
+
+        return dp[prices.length - 1][states - 1];
+    }
+}
+```
 
 
+### DP with 2 arrays
+
+** DP五部曲**
+1. 使用两个dp数组`prev`和`curr`, 来表示过去和现在**每一笔(前后两次)交易里**每一天能够获得的最大利润
+2. 递推公式: 
+   * 那么当天能够取得的最大收益就是 **前一天的最大收益** 或者 **前一天买入今天卖出的收益** 两者的最大值; 
+   * 每次交易完成时需要把截止到当前交易当前天数的最大收益储存在`prev`中
+3. 遍历方向: 外层遍历交易数量, 内层遍历天数
+4. 初始值: 
+5. 带入例子
+
+```java
+class Solution {
+   public int bestTimeToSell4DP2Array(int k, int[] prices)
+   {
+      int[] prev = new int[prices.length];
+      int[] curr = new int[prices.length];
+      int[] temp;
+
+      for(int i = 1; i < k + 1; i++){
+         int max = -Integer.MAX_VALUE;
+         for(int j = 1; j < prices.length; j++)
+         {
+            max = Math.max(max, prev[j - 1] - prices[j-1]);
+            curr[j] = Math.max(curr[j - 1], max + prices[j]);
+            curr[j] = Math.max(curr[j-1], prev[j-1]-prices[j-1] + prices[j]);
+         }
+         temp = prev;
+         prev = curr;
+         curr = temp;
+      }
+
+      return prev[prices.length-1];
+   }
+}
+```
+
+
+# 714. 买卖股票的最佳时机(含手续费)
+
+给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。
+
+你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。
+
+返回获得利润的最大值。
+
+注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。
+
+## 示例
+
+```
+输入: prices = [1, 3, 2, 8, 4, 9], fee = 2 输出: 8
+
+解释: 能够达到的最大利润: 在此处买入 prices[0] = 1 在此处卖出 prices[3] = 8 在此处买入 prices[4] = 4 在此处卖出 prices[5] = 9 总利润: ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+
+```
+
+```
+输入：prices = [1,3,7,5,10,3], fee = 3
+输出：6
+```
+
+## 思路
+
+大致思路和 [122.买卖股票的最佳时机II] 类似, 但是这里因为有手续费的原因, 所以需要考虑到买卖利润不足以支付手续费的情况.
+
+### 贪心
+
+> 最低值买入, 最高值(算上手续费仍旧盈利)时卖出.
+
+
+所以在遍历的时候, 需要考虑买入日期和卖出日期.
+**未持有股票时**:
+- 买入日期: 遇到价更低的点就买入, 不断更新最低价格
+
+**有股票时**:
+- 卖出日期: 只只满足 `当前价格 > 最低价格+手续费`, 持有日期就加一, 在获利最后一天时候卖出.
+    - 情况一：收获利润的这一天并不是收获利润区间里的最后一天（不是真正的卖出，相当于持有股票），所以后面要继续收获利润。
+    - 情况二：前一天是收获利润区间里的最后一天（相当于真正的卖出了），今天要重新记录最小价格了。
+    - 情况三：不作操作，保持原有状态（买入，卖出，不买不卖）
+
+```tsx
+export function maxProfit(prices: number[], fee: number): number {
+  if(!prices.length) return 0;
+
+  let profit: number = 0;
+  let minPrice: number = prices[0]
+
+  for(let i = 1; i < prices.length; i++) {
+    // 情况2, 买入
+    if(prices[i] < minPrice) minPrice = prices[i]
+
+    // 情况3, 买入不赚, 卖出亏本
+    if(prices[i] >= minPrice && prices[i] <= minPrice + fee) continue
+
+    // 情况1, 计算利润
+    if(prices[i] > minPrice + fee) {
+      profit += prices[i] - minPrice - fee;
+      minPrice = prices[i] - fee; // 重点
+    }
+  }
+
+  return profit
+}
+
+```
+
+### 动态规划
+
+```typescript
+export function maxProfitDP(prices: number[], fee: number): number {
+  const dp = new Array(prices.length).fill(0).map(_ => new Array(2).fill(0));
+
+  // dp[i][0] holding
+  // dp[i][1] not holding
+  dp[0][0] = 0 - prices[0]
+  dp[0][1] = 0;
+
+  for(let i = 1; i < prices.length; i++) {
+    dp[i][0] = Math.max(dp[i - 1][0], dp[i -1][1] - prices[i]);
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i] - fee);
+  }
+
+  return dp[dp.length - 1][1];
+}
+```
+
+# 309.最佳买卖股票时机含冷冻期
+
+给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。
+
+设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
+
+你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+
+## 示例
+```
+输入: [1,2,3,0,2]
+输出: 3
+解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
+```
+
+```
+Input: k = 2, prices = [3,2,6,5,0,3]
+Output: 7
+Explanation: 
+Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. 
+Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+对应的交易状态为: [不操作, 买入, 卖出, 冷冻期, 不操作, 买入, 卖出]
+```
+
+
+## 思路 
+
+
+### DP
+> 考虑到冷冻期的存在, 那么就必须把前一天刚卖出和前一天未持有两个状态分开. 所以 必须存在4个状态`持有, 今天前就未持有, 今天卖出, 今天冷冻期`
+
+DP五部曲
+1. `dp[i]` means till `i`th day, the maximum profit I can earn. `dp[i][0]`,`dp[i][1]`,`dp[i][2]`,`dp[i][3]`, means the 4 states mentioned before.
+2. logic in each iteration: 
+   * `dp[i][0]` means holding the stock: so `i-1`th day might already hold it, or `i-1` day is a freeze day(just brough the stock today), or `i-1` day alrayd has nothing
+   * `dp[i][1]` means not holding the stock(but didn't sell today): already not holding in `i-1` day, or `i-1` is freeze day 
+   * `dp[i][2]` means just sold it today: it could only mean holding on `i-1` day and sell today
+   * `dp[i][2]` means freeze day: it could only mean sold the stock on `i-1` day   
+3. iteration direction: days
+4. init values: Expept for `dp[i][0] = -prices`, everything else is `0`.
+5. using an actual example
+```java
+public class Solution {
+    public int withCoolDownDP(int[] prices)
+    {
+       int[][] dp = new int[prices.length][4];
+       // 0 => holding, 1 => not holding, 2 => sell the stock, 3 => in freeze
+       dp[0][0] = -prices[0];
+       dp[0][1] = 0;
+       dp[0][2] = 0;
+       dp[0][3] = 0;
+
+       for(int i = 1; i < prices.length; i++)
+       {
+           // holding: already hold in `i-1` day, or already sold before`i-1` buy today, or today is freeze day
+           dp[i][0] = Math.max(dp[i-1][0], Math.max(dp[i-1][1]-prices[i], dp[i-1][3] - prices[i]));
+           // not holding: already not holding in `i-1` day, or `i-1` is freeze day
+           dp[i][1] = Math.max(dp[i-1][1], dp[i-1][3]);
+           // sell today, `i-1` is freeze day, or holding on `i-1` day and sell todya
+           dp[i][2] = dp[i-1][0] + prices[i];
+           // freezeday => just sold on `i-1`
+           dp[i][3] = dp[i-1][2];
+       }
+
+       // freeze day, already sold, or just sell
+       return Math.max(Math.max(dp[prices.length-1][3],dp[prices.length-1][1]), dp[prices.length-1][2]);
+    }
+}
+
+```
