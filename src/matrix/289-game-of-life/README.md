@@ -75,6 +75,54 @@ export function gameOfLife(board: number[][]): void {
 ```
 > Time Complexity is `O(mn)`, Space Complexity is `O(mn)`(need to copy the whole board)
 
-### optimized approach
-by claiming a new state: `2`, which means it used to be dead, and will be alive. this way, we will know how to update next state 
-while not corrupting other cells to be updated.
+### optimized approach -> Bit
+
+We could essentially assign each cell with a bit structure like `next | curr`, 
+* if after the rules checkout, it will be 1, we assign them as `1 | curr`. in ts, simply add by 2
+* when checking other cells' value, check if the reminder of the value divided by 2 is 1
+
+
+```ts
+export function gameOfLifeOptimal(board: number[][]): void {
+  const m = board.length;
+  const n = board[0].length;
+
+  for(let row = 0; row < m; row++) {
+    for(let col = 0; col < n; col++) {
+
+      let alive = calculateAlive(row, m, col, n, board);
+
+      if(board[row][col] === 1) {
+        if(alive == 2 || alive === 3) {
+          board[row][col] += 2;
+        }
+      } else if(board[row][col] === 0) {
+        if(alive === 3) {
+          board[row][col] += 2;
+        }
+      }
+    }
+  }
+
+  for(let i = 0; i < m; i++) {
+    for(let j = 0; j < n; j++) {
+      board[i][j] >>= 1;
+    }
+  }
+}
+
+export function calculateAlive(row: number, m: number, col: number, n: number, board: number[][]) {
+  let alive = 0;
+
+  for (let i = Math.max(0, row - 1); i <= Math.min(m - 1, row + 1); i++) {
+    for (let j = Math.max(0, col - 1); j <= Math.min(n - 1, col + 1); j++) {
+      if (row === i && col === j) continue;
+
+      if (board[i][j] % 2 === 1) alive++;
+    }
+  }
+
+  return alive;
+}
+```
+
