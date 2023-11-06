@@ -29,7 +29,7 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 
 ### update intervals first and push
 1. sort the array based on the starting value, this will make all the interval stays as close as possible
-2. iterate through the array, if there's a case where `intervals[i][0] <= intervals[i-1][1]`, then there must be a overlapping, the new intervals should be `intervals[i-1][0], max(intervals[i][1])`
+2. iterate through the array, if there's a case where `intervals[i][0] <= intervals[i-1][1]`, then there must be an overlapping, the new intervals should be `intervals[i-1][0], max(intervals[i][1])`
 3. be careful when there's an interval left at the end that has been updated yet 
 
 ```ts
