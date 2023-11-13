@@ -37,10 +37,9 @@ To complete this shooting mission with minimal arrows, we have to make sure each
 That means, we need to first know how the balloons are overlapping.
 
 ```
-1 - - - - 6
-  2 - - - - - 8
-            7 - - - - 12
-                  10- - - - - 16
+1 - - 4
+    3 - - - 7                 
+        5 6
 ```
 
 ### Greedy
