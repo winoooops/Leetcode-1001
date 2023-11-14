@@ -2,8 +2,8 @@ export type ListNodeLike = ListNode | null;
 
 export class ListNode {
   val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
+  next: ListNodeLike;
+  constructor(val?: number, next?: ListNodeLike) {
     this.val = val === undefined? 0 : val;
     this.next = next === undefined? null : next;
   }
