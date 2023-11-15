@@ -8,7 +8,7 @@ export class ListNode {
     this.next = next === undefined? null : next;
   }
 
-  static createListNodeFromArray(list: number[]): ListNodeLike {
+  public static createListNodeFromArray(list: number[]): ListNodeLike {
     let head = new ListNode(0);
     let curr = head;
     let newNode;
