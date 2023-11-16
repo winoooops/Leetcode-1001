@@ -61,5 +61,3 @@ export function reverseBetweenOneTime(head: ListNodeLike, left: number, right: n
 
   return sentinel.next;
 }
-
-
