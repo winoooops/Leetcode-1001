@@ -13,12 +13,12 @@ export function reverseBetween(head: ListNodeLike, left: number, right: number):
 
   // prev -> [leftNode, rightNode] -> succ
   while(count < right) {
-    if(count < left - 1) {
+    count++;
+    if(count < left) {
       prev = prev.next as ListNode;
     }
 
     rightNode = rightNode.next as ListNode;
-    count++;
   }
 
   let leftNode = prev.next as ListNode;

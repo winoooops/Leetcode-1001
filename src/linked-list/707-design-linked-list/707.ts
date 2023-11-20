@@ -100,7 +100,11 @@ class LinkedListTwo implements ILinkedList{
 
   }
 
-  addAtIndex(index: number, val: number) {}
+  addAtIndex(index: number, val: number) {
+    if(index > this.size) return;
+    const temp = new ListNode(val);
+    let prev, next;
+  }
 
   get(index: number): number {
     return 0;

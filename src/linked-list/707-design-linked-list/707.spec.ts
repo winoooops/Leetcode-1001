@@ -49,4 +49,22 @@ describe('707. Design Linked List', () => {
       expect(MyLinkedList.get(6)).toBe(4);
     });
   })
+
+  describe("Test Two directional Linked List", () => {
+    it('testcase 1', function () {
+      const MyLinkedList = LinkedListFactory(2);
+      MyLinkedList.addAtHead(1);
+      MyLinkedList.addAtTail(3);
+      MyLinkedList.addAtIndex(1, 2)
+
+      expect(MyLinkedList.get(0)).toBe(1);
+      expect(MyLinkedList.get(1)).toBe(2);
+      expect(MyLinkedList.get(2)).toBe(3);
+
+      MyLinkedList.deleteAtIndex(1);
+
+      expect(MyLinkedList.get(0)).toBe(1);
+      expect(MyLinkedList.get(1)).toBe(3);
+    });
+  });
 })
