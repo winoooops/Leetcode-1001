@@ -3,7 +3,7 @@
 A linked list of length `n` is given such that each node contains an additional random pointer, 
 which could point to any node in the list, or null.
 
-Construct a **deep copy** of the list. The deep copy should consist of exactly `n` brand new nodes, where each new node has its value set to the value of its corresponding original node. 
+Construct a **deep copy** of the list. The deep copy should consist of exactly `n` brand-new nodes, where each new node has its value set to the value of its corresponding original node. 
 
 Both the next and random pointer of the new nodes should point to new nodes in the copied list such that the pointers in the original list and copied list represent the same list state. 
 
@@ -53,3 +53,43 @@ then we could make add additional nodes to the listNode to make it as `A -> A' -
 1. traverse the original list: for each node, create a corresponding new node and place it between current node and current node's `next` node: `A->A'->B->B'->C->C'->null` 
 2. traverse the list again, for each old node, set its corresponding new node's pointer
 3. traverse the interweaving list again, separate the old and new list
+
+```ts
+export function copyRandomList(head: ListNodeRandomLike): ListNodeRandomLike {
+  if(!head) return null;
+
+  let curr: ListNodeRandomLike = head;
+  // create A' for A, B' for B
+  while(curr) {
+    let newNode: ListNodeRandomLike = new ListNodeRandom(curr.val, curr.next);
+    curr.next = newNode;
+    curr = newNode.next;
+  }
+
+  curr = head;
+  // link up random pointers
+  while(curr) {
+    let newNode = curr.next;
+    if(newNode) {
+      newNode.random = curr.random ? curr.random.next : null;
+    }
+    curr = curr.next?.next;
+  }
+
+  // cut off the interwoven list by linking up copy nodes
+  let result = head.next;
+  curr = head;
+  while(curr) {
+    const next: ListNodeRandomLike = curr.next?.next;
+    const copy = curr.next;
+    if(copy) {
+      copy.next = next ? next.next : null;
+    }
+    // removing the link between original nodes and copy nodes
+    curr.next = next;
+    curr = next;
+  }
+
+  return result;
+}
+```

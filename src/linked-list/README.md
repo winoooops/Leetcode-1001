@@ -251,6 +251,119 @@ export function rotateRight(head: ListNodeLike, k: number): ListNodeLike {
 }
 ```
 
+### [141. Linked List Cycle](./141-linked-list-cycle/README.md)
+By saying there's a loop inside the linked list, we can use Floyd's Tortoise and Hare algorithm to detect the loop.
+* declare two pointers, 
+  * one is moving one step at a time, the other is moving two steps at a time.
+  * the slow pointer starts from the sentinel node, the fast pointer starts from the first node.
+* if the two pointers meet, then there is a loop in the linked list.
+
+```ts 
+export function hasCycleFloyd(head: ListNode | null) {
+  if(head === null) return false;
+
+  let slow: ListNodeLike = head;
+  let fast: ListNodeLike = head;
+
+  while(slow && fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if(slow === fast) return true;
+  }
+
+  return false;
+}
+```
+
+### [142. Linked List Cycle II](142-linked-list-cycle-ii/README.md)
+The first intuition is to use a set to store the nodes that have been visited. But that's not the best solution.
+```ts
+export function detectCycleSet(head: ListNodeLike): ListNodeLike {
+  if(!head || !head.next) return null;
+  const set = new Set();
+  let curr: ListNodeLike = head;
+  while(curr) {
+    if(set.has(curr)) return curr;
+    set.add(curr);
+    curr = curr.next;
+  }
+
+  return null;
+}
+```
+
+Using Floyd Tortoise and Hare algorithm, we can find the starting node of the loop.
+```ts
+export function detectCycleFloyed(head: ListNodeLike): ListNodeLike {
+  if(!head || !head.next) return null;
+  let slow: ListNodeLike = head;
+  let fast: ListNodeLike = head;
+  while(slow && fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if(slow === fast) {
+      slow = head;
+      while(slow !== fast) {
+        slow = slow.next as ListNode;
+        fast = fast?.next as ListNode;
+      }
+      return slow;
+    }
+  }
+
+  return null;
+}
+```
+
+
+
+## Strategy: Adding Nodes to the List
+
+Sometimes it's easier to add nodes to the list to solve the problem.
+
+### Adding nodes in the middle: [138.Copy List With Random Pointer](./138-copy-list-with-random-pointer/README.md)
+```ts
+export function copyRandomList(head: ListNodeRandomLike): ListNodeRandomLike {
+  if(!head) return null;
+
+  let curr: ListNodeRandomLike = head;
+  // create A' for A, B' for B
+  while(curr) {
+    let newNode: ListNodeRandomLike = new ListNodeRandom(curr.val, curr.next);
+    curr.next = newNode;
+    curr = newNode.next;
+  }
+
+  curr = head;
+  // link up random pointers
+  while(curr) {
+    let newNode = curr.next;
+    if(newNode) {
+      newNode.random = curr.random ? curr.random.next : null;
+    }
+    curr = curr.next?.next;
+  }
+
+  // cut off the interwoven list by linking up copy nodes
+  let result = head.next;
+  curr = head;
+  while(curr) {
+    const next: ListNodeRandomLike = curr.next?.next;
+    const copy = curr.next;
+    if(copy) {
+      copy.next = next ? next.next : null;
+    }
+    // removing the link between original nodes and copy nodes
+    curr.next = next;
+    curr = next;
+  }
+
+  return result;
+}
+```
+
+
 ## Strategy: Recursion
 Of course, we can use recursion to solve linked list problems. But that's not the focus here.
 

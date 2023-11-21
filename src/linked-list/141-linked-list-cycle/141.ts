@@ -17,33 +17,16 @@ export function hasCycle(head: ListNode | null) {
 }
 
 export function hasCycleFloyd(head: ListNode | null) {
-  if(head === null || head.next === null) return false;
+  if(head === null) return false;
 
-  let slow: ListNode | null = head;
-  let fast: ListNode | null = head;
-  while(fast !== slow && fast !== null) {
-    if(slow) slow = slow.next;
+  let slow: ListNodeLike = head;
+  let fast: ListNodeLike = head;
 
-    if(fast.next === null) return false;
-
+  while(slow && fast && fast.next) {
+    slow = slow.next;
     fast = fast.next.next;
 
-    if(fast === slow) return true;
-  }
-
-  return false;
-}
-
-
-export function hasCycleFloyedTwo(head: ListNodeLike): boolean {
-  if(!head || !head.next) return false;
-  const dummy = new ListNode(0, head);
-  let slow: ListNodeLike = dummy;
-  let fast: ListNodeLike = dummy.next;
-  while(fast && fast.next) {
-    if(fast === slow) return true;
-    slow = slow.next as ListNode;
-    fast = fast.next.next;
+    if(slow === fast) return true;
   }
 
   return false;

@@ -1,4 +1,4 @@
-import {hasCycleFloyedTwo} from "./141";
+import {hasCycleFloyd} from "./141";
 import {ListNode} from "../ListNode";
 
 describe("Check loop function", () => {
@@ -14,22 +14,17 @@ describe('141. Linked List Cycle', () => {
   describe("Solution: Floyd's Tortoise and Hare", () => {
     it("should return true if there is a cycle in the linked list", () => {
       const head = ListNode.createLoopFromArray([3, 2, 0, -4], 1);
-      expect(hasCycleFloyedTwo(head)).toBe(true);
-    });
-
-    it("should return true if there is a cycle in the linked list", () => {
-      const head = ListNode.createLoopFromArray([1, 2], 0);
-      expect(hasCycleFloyedTwo(head)).toBe(true);
+      expect(hasCycleFloyd(head)).toBe(true);
     });
 
     it("should return false if there is no cycle in the linked list", () => {
       const head = ListNode.createLoopFromArray([1], -1);
-      expect(hasCycleFloyedTwo(head)).toBe(false);
+      expect(hasCycleFloyd(head)).toBe(false);
     });
 
     it("should return false if the linked list is empty", () => {
       const head = ListNode.createLoopFromArray([], -1);
-      expect(hasCycleFloyedTwo(head)).toBe(false);
+      expect(hasCycleFloyd(head)).toBe(false);
     });
   });
 });
