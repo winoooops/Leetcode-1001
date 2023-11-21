@@ -1,4 +1,4 @@
-import {ListNode} from "../ListNode";
+import {ListNode, ListNodeLike} from "../ListNode";
 
 export function hasCycle(head: ListNode | null) {
   if(head === null) return false;
@@ -29,6 +29,21 @@ export function hasCycleFloyd(head: ListNode | null) {
     fast = fast.next.next;
 
     if(fast === slow) return true;
+  }
+
+  return false;
+}
+
+
+export function hasCycleFloyedTwo(head: ListNodeLike): boolean {
+  if(!head || !head.next) return false;
+  const dummy = new ListNode(0, head);
+  let slow: ListNodeLike = dummy;
+  let fast: ListNodeLike = dummy.next;
+  while(fast && fast.next) {
+    if(fast === slow) return true;
+    slow = slow.next as ListNode;
+    fast = fast.next.next;
   }
 
   return false;
