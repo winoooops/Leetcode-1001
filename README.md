@@ -12,21 +12,14 @@
 * 螺旋矩阵: [螺旋矩阵](./array/spiral-matrix/README.md)
 
 
-## 算法基础: 链表
+## Data Structure: [LinkedList](./src/linked-list/README.md)
 
-[链表基础](./linkedlist/README.md)
+* create sentinel node
+* use two pointers to traverse the linked list
+* check if there's loop: two pointer with different speed
+* adding or removing nodes: change the prev/next pointer of the node, instead of changing the node itself
 
-常见基本思路:
-* 虚拟头节点 
-  * [删除链表元素](./linkedlist/remove-linkedlist-element/)
-  * [设计链表](./linkedlist/design-linked-list/README.md)
-  * [两两交换节点](./linkedlist/swap-nodes-in-pairs/) 
-* 快慢指针
-  * [逆转链表](./linkedlist/reverse-linkedlist/README.md)
-  * [删除列表倒数第n位](./linkedlist/remove-nth-node/)
-  * [环形链表](./linkedlist/linkedlist-cycle/)
-* 双指针拼接
-  * [链表相交](./linkedlist/intersections-of-two-linkedList/)
+
 
 ## 算法基础: 哈希表
 
