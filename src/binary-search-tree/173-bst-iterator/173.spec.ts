@@ -6,7 +6,6 @@ describe("173. BST Iterator", () => {
     it("should implement the features accordingly", () => {
       const root = TreeNode.createTree([7, 3, 15, null, null, 9, 20]);
       const bst = new BSTIterator(root as TreeNode);
-
       expect(bst.next()).toBe(3);
       expect(bst.next()).toBe(7);
       expect(bst.hasNext()).toBe(true);
@@ -29,6 +28,6 @@ describe("173. BST Iterator", () => {
       expect(bst.next()).toBe(12);
       expect(bst.hasNext()).toBe(true);
       expect(bst.next()).toBe(15);
-    })
-  })
+    });
+  });
 });

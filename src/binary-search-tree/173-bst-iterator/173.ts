@@ -1,6 +1,5 @@
 import {TreeNode} from "../../binary-tree/TreeNode";
 
-
 export class BSTIterator {
   stack: TreeNode[];
 
