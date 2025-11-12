@@ -8,6 +8,8 @@ Examples:
 - `[3,2,1,0,4]` → `false` (coverage stalls at index `3`)
 
 ### Greedy Insight
+> Need to make sure that itereated steps(element in the nums) is actually within the coverage!!!
+
 We do not need to simulate every exact jump. Instead, keep the farthest index we can *cover* as we scan from left to right:
 
 1. Initialize `coverage = 0`.
@@ -16,6 +18,21 @@ We do not need to simulate every exact jump. Instead, keep the farthest index we
 4. If we finish the loop without reaching the end, return `false`.
 
 The key observation: once an index is unreachable (`i > coverage`), nothing after it can be reached either, so we can stop early.
+
+```ts
+export function canJump(nums: number[]): boolean {
+  if (nums.length <= 1) return true;
+  let coverage = 0;
+
+  for (let i = 0; i < nums.length && i <= coverage; i++) {
+    coverage = Math.max(coverage, i + nums[i]);
+
+    if (coverage >= nums.length - 1) return true;
+  }
+
+  return false;
+}
+```
 
 ### Complexity
 - Time `O(n)` — each index is processed once as long as it is reachable.
