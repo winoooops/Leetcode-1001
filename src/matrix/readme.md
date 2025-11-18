@@ -10,9 +10,9 @@ Matrix questions shift row/column boundaries across loops. Walk layers from the 
 
 ## Problems & notes
 
-- [36. Valid Sudoku](./36-valid-sudoku/)
-- [37. Sudoku Solver](./37-sudoku-solver/)
-- [48. Rotate Image](./48-rotate-image/)
-- [54. Spiral Matrix](./54-spiral-matrix/)
-- [73. Set Matrix Zeroes](./73-matrix-zeros/)
-- [289. Game of Life](./289-game-of-life/)
+- [36. Valid Sudoku](./36-valid-sudoku/README.md)
+- [37. Sudoku Solver](./37-sudoku-solver/README.md)
+- [48. Rotate Image](./48-rotate-image/README.md)
+- [54. Spiral Matrix](./54-spiral-matrix/README.md)
+- [73. Set Matrix Zeroes](./73-matrix-zeros/README.md)
+- [289. Game of Life](./289-game-of-life/README.md)

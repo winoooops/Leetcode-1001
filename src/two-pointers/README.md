@@ -10,8 +10,8 @@ Two-pointer setups thrive when the input is sorted or when one pointer marks the
 
 ## Problems & notes
 
-- [11. Container With Most Water](./11-container-most-water/)
-- [15. 3Sum](./15-three-sum/)
-- [125. Valid Palindrome](./125-valid-palindrome/)
-- [167. Two Sum II – Input Array Is Sorted](./167-two-sum-II/)
-- [392. Is Subsequence](./392-subsequence/)
+- [11. Container With Most Water](./11-container-most-water/README.md)
+- [15. 3Sum](./15-three-sum/README.md)
+- [125. Valid Palindrome](./125-valid-palindrome/README.md)
+- [167. Two Sum II – Input Array Is Sorted](./167-two-sum-II/README.md)
+- [392. Is Subsequence](./392-subsequence/README.md)

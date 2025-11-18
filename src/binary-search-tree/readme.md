@@ -10,5 +10,5 @@ BST problems hinge on the sorted invariant: in-order traversal yields sorted val
 
 ## Problems & notes
 
-- [173. Binary Search Tree Iterator](./173-bst-iterator/)
-- [530. Minimum Absolute Difference in BST](./530-minimal-differences/)
+- [173. Binary Search Tree Iterator](./173-bst-iterator/README.md)
+- [530. Minimum Absolute Difference in BST](./530-minimal-differences/README.md)

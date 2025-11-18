@@ -10,7 +10,7 @@ Sliding-window problems track a range `[left, right]` while maintaining counts o
 
 ## Problems & notes
 
-- [3. Longest Substring Without Repeating Characters](./3-longest-substring-without-repeating/)
-- [30. Substring with Concatenation of All Words](./30-substring-concatenation/)
-- [76. Minimum Window Substring](./76-min-window-substring/)
-- [209. Minimum Size Subarray Sum](./209-minimum-subarray-sum/)
+- [3. Longest Substring Without Repeating Characters](./3-longest-substring-without-repeating/README.md)
+- [30. Substring with Concatenation of All Words](./30-substring-concatenation/README.md)
+- [76. Minimum Window Substring](./76-min-window-substring/README.md)
+- [209. Minimum Size Subarray Sum](./209-minimum-subarray-sum/README.md)

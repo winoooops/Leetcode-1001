@@ -10,10 +10,10 @@ Most of these skew toward array/two-pointer logic, but they live here because th
 
 ## Problems & notes
 
-- [27. Remove Element](./27-remove-element/)
-- [26. Remove Duplicates from Sorted Array I](./remove-duplicates/26-remove-duplicates-I/)
-- [80. Remove Duplicates from Sorted Array II](./remove-duplicates/80-remove-duplicates-II/)
-- [88. Merge Sorted Array](./88-merge-sorted-array/)
-- [169. Majority Element](./169-majority-element/)
-- [Replacing spaces (two-pointer walkthrough)](./philosophy/two-pointers/replacing-spaces/)
-- [Run-Length Encoding basics](./RLE/)
+- [27. Remove Element](./27-remove-element/README.md)
+- [26. Remove Duplicates from Sorted Array I](./remove-duplicates/26-remove-duplicates-I/README.md)
+- [80. Remove Duplicates from Sorted Array II](./remove-duplicates/80-remove-duplicates-II/README.md)
+- [88. Merge Sorted Array](./88-merge-sorted-array/README.md)
+- [169. Majority Element](./169-majority-element/README.md)
+- [Replacing spaces (two-pointer walkthrough)](./philosophy/two-pointers/replacing-spaces/README.md)
+- [Run-Length Encoding basics](./RLE/README.md)

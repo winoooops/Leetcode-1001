@@ -10,12 +10,12 @@ Hash-based problems collapse disparate lookups to O(1). Decide early if you need
 
 ## Problems & notes
 
-- [1. Two Sum](./1-two-sum/)
-- [49. Group Anagrams](./49-group-anagrams/)
-- [128. Longest Consecutive Sequence](./128-longest-consecutive-sequence/)
-- [202. Happy Number](./202-happy-number/)
-- [205. Isomorphic Strings](./205-isomorphic-strings/)
-- [219. Contains Duplicate II](./219-contains-duplicate-II/)
-- [242. Valid Anagram](./242-valid-anagram/)
-- [290. Word Pattern](./290-word-pattern/)
-- [383. Ransom Note](./383-ransom-note/)
+- [1. Two Sum](./1-two-sum/README.md)
+- [49. Group Anagrams](./49-group-anagrams/README.md)
+- [128. Longest Consecutive Sequence](./128-longest-consecutive-sequence/README.md)
+- [202. Happy Number](./202-happy-number/README.md)
+- [205. Isomorphic Strings](./205-isomorphic-strings/README.md)
+- [219. Contains Duplicate II](./219-contains-duplicate-II/README.md)
+- [242. Valid Anagram](./242-valid-anagram/README.md)
+- [290. Word Pattern](./290-word-pattern/README.md)
+- [383. Ransom Note](./383-ransom-note/README.md)

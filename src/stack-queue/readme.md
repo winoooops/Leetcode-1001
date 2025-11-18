@@ -10,8 +10,8 @@ Stacks (FILO) and queues (FIFO) model expression parsing, backtracking, and hist
 
 ## Problems & notes
 
-- [20. Valid Parentheses](./20-valid-parentheses/)
-- [71. Simplify Path](./71-simplify-path/)
-- [150. Evaluate Reverse Polish Notation](./150-Evaluate-Reverse-Polish-Notation/)
-- [155. Min Stack](./155-min-stack/)
-- [224. Basic Calculator](./224-basic-calculator/)
+- [20. Valid Parentheses](./20-valid-parentheses/README.md)
+- [71. Simplify Path](./71-simplify-path/README.md)
+- [150. Evaluate Reverse Polish Notation](./150-Evaluate-Reverse-Polish-Notation/README.md)
+- [155. Min Stack](./155-min-stack/README.md)
+- [224. Basic Calculator](./224-basic-calculator/README.md)

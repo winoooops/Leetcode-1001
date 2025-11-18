@@ -10,7 +10,7 @@ Interval problems reward sorting by start time and tracking the active window. W
 
 ## Problems & notes
 
-- [56. Merge Intervals](./56-merge-intervals/)
-- [57. Insert Interval](./57/)
-- [228. Summary Ranges](./228-summary-ranges/)
-- [452. Minimum Number of Arrows to Burst Balloons](./452-min-arrows-burst-balloons/)
+- [56. Merge Intervals](./56-merge-intervals/README.md)
+- [57. Insert Interval](./57/README.md)
+- [228. Summary Ranges](./228-summary-ranges/README.md)
+- [452. Minimum Number of Arrows to Burst Balloons](./452-min-arrows-burst-balloons/README.md)
