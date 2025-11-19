@@ -24,6 +24,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 ### Two Pointers & Iterations
 - [189. Rotate Array](./189-rotate-array/README.md)
 - [238. Product of Array Except Self](./238-product-except-self/README.md)
+- [135. Candy](./135-candy/README.md)
 
 ### Ordering 
 - [274. H-Index](./274-h-index/README.md)
@@ -38,6 +39,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [122. Best Time to Buy and Sell Stock II](./buy-stock/122-best-time-to-buy-and-sell-stock-II/README.md)
 - [123. Best Time to Buy and Sell Stock III](./buy-stock/123-best-time-to-buy-and-sell-stock-III/README.md)
 - [188. Best Time to Buy and Sell Stock IV](./buy-stock/188-best-time-to-buy-and-sell-stock-IV/README.md)
+- [135. Candy](./135-candy/README.md)
 
 ### Dynamic Programming
 - [121. Best Time to Buy and Sell Stock I](./buy-stock/121-best-time-to-buy-and-sell-stock-I/README.md)
