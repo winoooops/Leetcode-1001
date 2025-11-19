@@ -84,7 +84,7 @@ export function candySlope(ratings: number[]): number {
 ```
 
 - When the slope rises or stays flat, reset the descending counter and grow `prev`.
-- When the slope falls, grow `dec`; if the descending length catches the previous increasing length, give one extra candy to the former peak (by bumping `dec`).
+- When the slope falls, grow `dec`; if the descending length catches the previous increasing length, give one extra candy to the former peak (by bumping `dec`). The current child now sits at the end of a decreasing run whose right neighbor already received `dec - 1` candies, so we can safely reset `prev = 1`—their eventual candy count is encoded by `dec`, not by `prev`.
 - Add `prev` or `dec` to the running total each step. Space drops to `O(1)` because no array is needed, but the reasoning is subtler than the two-pass method.
 - Intuition for the bump: when `dec === inc`, the descending run is as long as the preceding ascent. The peak’s candy count would otherwise equal the first child on the way down, so we conceptually “treat” the peak as the start of the descending segment and give it one extra candy, implemented by incrementing `dec`.
 

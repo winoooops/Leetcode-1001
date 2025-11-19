@@ -39,14 +39,16 @@ export function candySlope(ratings: number[]): number {
   let inc = 1;
   let dec = 0;
   let prev = 1;
+  let curr: number;
 
   for (let i = 1; i < n; i++) {
     // asecending (or flat) slope
     if (ratings[i] >= ratings[i - 1]) {
       dec = 0;
-      prev = ratings[i] === ratings[i - 1] ? 1 : prev + 1;
-      total += prev;
-      inc = prev;
+      curr = ratings[i] === ratings[i - 1] ? 1 : prev + 1;
+      total += curr;
+      inc = curr;
+      prev = curr;
     }
     // descending slope
     else {
