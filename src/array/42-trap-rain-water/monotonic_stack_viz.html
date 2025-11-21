@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monotonic Stack Visualization - Trap Rain Water</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #569cd6;
+        }
+
+        #controls {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #0e639c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:disabled {
+            background-color: #3c3c3c;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1177bb;
+        }
+
+        #visualization {
+            display: flex;
+            align-items: flex-end;
+            height: 300px;
+            border-bottom: 2px solid #d4d4d4;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .bar-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0 2px;
+            width: 40px;
+            position: relative;
+        }
+
+        .bar {
+            width: 100%;
+            background-color: #4ec9b0;
+            transition: height 0.3s, background-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .water {
+            width: 100%;
+            background-color: #007acc;
+            opacity: 0.7;
+            position: absolute;
+            bottom: 0;
+            z-index: 2;
+            transition: height 0.3s;
+        }
+
+        .bar-label {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .bar.current {
+            background-color: #dcdcaa;
+            border: 2px solid #ce9178;
+        }
+
+        .bar.stack-top {
+            background-color: #c586c0;
+        }
+
+        .bar.in-stack {
+            border: 2px solid #c586c0;
+        }
+
+        #stack-view {
+            margin-top: 20px;
+            border: 1px solid #3c3c3c;
+            padding: 10px;
+            min-width: 200px;
+            min-height: 50px;
+            background-color: #252526;
+        }
+
+        #log {
+            margin-top: 20px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #252526;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #3c3c3c;
+            height: 150px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #3c3c3c;
+            padding-bottom: 2px;
+        }
+
+        .highlight {
+            color: #ce9178;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Monotonic Stack Visualization</h1>
+
+    <div id="controls">
+        <button id="prevBtn" disabled>Previous</button>
+        <button id="nextBtn">Next</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <div id="visualization">
+        <!-- Bars will be generated here -->
+    </div>
+
+    <div id="stack-view">
+        <strong>Stack:</strong> <span id="stack-content">[]</span>
+    </div>
+
+    <div id="log"></div>
+
+    <script>
+        const height = [3, 2, 1, 3];
+        let currentStep = 0;
+        let steps = [];
+
+        // Pre-calculate steps
+        function calculateSteps() {
+            const stack = [];
+            const steps = [];
+            let waterMap = new Array(height.length).fill(0);
+
+            steps.push({
+                index: -1,
+                stack: [],
+                waterMap: [...waterMap],
+                message: "Start: Initial state."
+            });
+
+            for (let i = 0; i < height.length; i++) {
+                steps.push({
+                    index: i,
+                    stack: [...stack],
+                    waterMap: [...waterMap],
+                    message: `Processing index ${i} (height ${height[i]}). Checking stack...`
+                });
+
+                while (stack.length > 0 && height[i] > height[stack[stack.length - 1]]) {
+                    const top = stack.pop();
+
+                    steps.push({
+                        index: i,
+                        stack: [...stack], // Stack after pop
+                        waterMap: [...waterMap],
+                        message: `Height ${height[i]} > Height ${height[top]} (index ${top}). Popped ${top}.`
+                    });
+
+                    if (stack.length === 0) {
+                        steps.push({
+                            index: i,
+                            stack: [...stack],
+                            waterMap: [...waterMap],
+                            message: `Stack empty after pop. Cannot trap water.`
+                        });
+                        break;
+                    }
+
+                    const distance = i - stack[stack.length - 1] - 1;
+                    const boundedHeight = Math.min(height[i], height[stack[stack.length - 1]]) - height[top];
+                    const water = distance * boundedHeight;
+
+                    // Update water map for visualization
+                    // We need to add water to the indices between left boundary and current i
+                    const left = stack[stack.length - 1];
+                    for (let k = left + 1; k < i; k++) {
+                        // Only add water if it's not already filled to this level
+                        // Actually, the algorithm calculates horizontal slices.
+                        // For visualization, we can just accumulate water.
+                        // But simple accumulation is tricky with slices.
+                        // Let's just track total water height at each index.
+                        // Wait, the standard algo adds water.
+                        // Let's just re-calculate water level for visualization based on current known trapped water.
+                        // To keep it simple for visualization, let's just show the "water added" in this step.
+                        // But we want to show cumulative water.
+                        // Let's update waterMap.
+                        waterMap[k] += boundedHeight;
+                    }
+
+                    steps.push({
+                        index: i,
+                        stack: [...stack],
+                        waterMap: [...waterMap],
+                        message: `Found left boundary ${stack[stack.length - 1]}. Trapped ${water} units of water (height ${boundedHeight} * width ${distance}).`
+                    });
+                }
+                stack.push(i);
+                steps.push({
+                    index: i,
+                    stack: [...stack],
+                    waterMap: [...waterMap],
+                    message: `Pushed index ${i} to stack.`
+                });
+            }
+
+            steps.push({
+                index: height.length,
+                stack: [...stack],
+                waterMap: [...waterMap],
+                message: "Finished."
+            });
+
+            return steps;
+        }
+
+        steps = calculateSteps();
+
+        const vizContainer = document.getElementById('visualization');
+        const stackContent = document.getElementById('stack-content');
+        const logContainer = document.getElementById('log');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function render() {
+            vizContainer.innerHTML = '';
+            const state = steps[currentStep];
+
+            height.forEach((h, idx) => {
+                const barContainer = document.createElement('div');
+                barContainer.className = 'bar-container';
+                barContainer.style.height = '100%';
+
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = (h * 20) + 'px'; // Scale height
+
+                if (idx === state.index) {
+                    bar.classList.add('current');
+                }
+                if (state.stack.includes(idx)) {
+                    bar.classList.add('in-stack');
+                }
+                if (state.stack.length > 0 && state.stack[state.stack.length - 1] === idx) {
+                    bar.classList.add('stack-top');
+                }
+
+                const water = document.createElement('div');
+                water.className = 'water';
+                // Water height is on top of the bar, but we need to position it correctly.
+                // The waterMap stores the amount of water on top of the bar.
+                const waterHeight = state.waterMap[idx] || 0;
+                water.style.height = (waterHeight * 20) + 'px';
+                water.style.bottom = (h * 20) + 'px';
+
+                const label = document.createElement('div');
+                label.className = 'bar-label';
+                label.innerText = idx;
+
+                barContainer.appendChild(water);
+                barContainer.appendChild(bar);
+                barContainer.appendChild(label);
+                vizContainer.appendChild(barContainer);
+            });
+
+            stackContent.innerText = JSON.stringify(state.stack);
+
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerText = `Step ${currentStep}: ${state.message}`;
+            logContainer.prepend(logEntry);
+
+            prevBtn.disabled = currentStep === 0;
+            nextBtn.disabled = currentStep === steps.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                render();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                render();
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            currentStep = 0;
+            logContainer.innerHTML = '';
+            render();
+        });
+
+        // Initial render
+        render();
+
+    </script>
+</body>
+
+</html>
