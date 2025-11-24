@@ -15,15 +15,20 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 
 > [Binary search cheat sheet](./techniques/binary-search/README.md)
 
+- [14. LCP](./14-longest-common-prefix/README.md)
+
 **When to Reach For It**
 - Arrays already sorted or can be reasoned with monotonic predicate (e.g. `check(x)` switches from false to true once).
 - You need `O(log n)` lookups rather than scanning linearly.
 - “Find first/last occurrence”, “search insert position”, or “min time satisfying condition” patterns.
 
-
 ### Two Pointers & Iterations
 - [238. Product of Array Except Self](./238-product-except-self/README.md)
 - [135. Candy](./135-candy/README.md)
+- [14. LCP](./14-longest-common-prefix/README.md)
+
+### Recursion
+- [14. LCP](./14-longest-common-prefix/README.md)
 
 ### Ordering 
 - [189. Rotate Array](./189-rotate-array/README.md)
@@ -31,6 +36,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [380. Insert Delete GetRandom O(1)](./380-random-set/README.md)
 - [13. Roman To Integer](./13-roman-to-int/README.md)
 - [12. Integer to Roman](./12-int-to-roman/README.md)
+- [58. length of last word](./58-length-of-last-word/README.md)
 
 
 ### Greedy Algorithm
