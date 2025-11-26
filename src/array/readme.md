@@ -38,6 +38,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [12. Integer to Roman](./12-int-to-roman/README.md)
 - [58. length of last word](./58-length-of-last-word/README.md)
 - [151. reverse words in a string](./151-reverse-words-in-a-string/README.md)
+- [6. zigzag conversion](./6-zigzag-conversion/README.md)
 
 
 ### Greedy Algorithm
