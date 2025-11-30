@@ -1,4 +1,4 @@
-import {strStr} from './28';
+import {KMP, getNext, strStr} from './28';
 
 type Implementation = {
   label: string;
@@ -7,6 +7,7 @@ type Implementation = {
 
 const implementations: Implementation[] = [
   {label: 'brute force scan', fn: strStr},
+  {label: 'KMP', fn: KMP},
 ];
 
 type TestCase = {
@@ -65,6 +66,18 @@ const cases: TestCase[] = [
     needle: 'aa',
     expected: 0,
   },
+  {
+    name: 'official test',
+    haystack: 'aabaabaaf',
+    needle: 'aabaaf',
+    expected: 3,
+  },
+  {
+    name: 'super edge',
+    haystack: 'adcadcaddcadde',
+    needle: 'adcadde',
+    expected: -1,
+  },
 ];
 
 describe('28. Find the Index of the First Occurrence in a String', () => {
@@ -74,5 +87,15 @@ describe('28. Find the Index of the First Occurrence in a String', () => {
         expect(fn(haystack, needle)).toBe(expected);
       });
     });
+  });
+});
+
+describe('next function', () => {
+  it('should be [0, 1, 0, 1, 2, 0]', () => {
+    expect(getNext('aabaaf')).toEqual([0, 1, 0, 1, 2, 0]);
+  });
+
+  it('should be ', () => {
+    expect(getNext('abeabf')).toEqual([0, 0, 0, 1, 2, 0]);
   });
 });
