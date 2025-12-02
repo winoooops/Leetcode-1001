@@ -44,8 +44,10 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 > Problems that hinge on relative orderings—sorting, reversing, canonicalizing—before simpler logic applies.
 
 **Technique cues**
-- Normalize the sequence (sort, count sort, reverse segments) to expose monotonic structure.
-- Beware of destructive operations; copy only when order sensitivity prevents in-place tricks.
+Normalize the sequence (sort, count sort, reverse segments) to expose monotonic structure.
+
+Beware of destructive operations; copy only when order sensitivity prevents in-place tricks.
+
 - [189. Rotate Array](./189-rotate-array/README.md)
 - [274. H-Index](./274-h-index/README.md)
 - [380. Insert Delete GetRandom O(1)](./380-random-set/README.md)
@@ -55,6 +57,9 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [151. reverse words in a string](./151-reverse-words-in-a-string/README.md)
 - [6. zigzag conversion](./6-zigzag-conversion/README.md)
 
+**Simulation**
+
+- [68. Text Justification](./68-text-justification/README.md)
 
 ### Greedy Algorithm
 > Make the locally optimal decision at each step when future choices only depend on current state, not the path taken.
