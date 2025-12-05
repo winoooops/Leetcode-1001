@@ -32,6 +32,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [135. Candy](./135-candy/README.md)
 - [14. LCP](./14-longest-common-prefix/README.md)
 - [125. Valid Palidrome](./125-valid-palidrome/README.md)
+- [392. Is Subsequence](./392-is-subsequence/README.md)
 
 ### Recursion
 > Break the array into self-similar pieces (divide and conquer) when the combination logic is simpler than iterative bookkeeping.

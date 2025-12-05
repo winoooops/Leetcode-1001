@@ -1,7 +1,4 @@
-import {
-  isSubsequencePointer,
-  isSubsequenceStack,
-} from '../../array/392-is-subsequence/392';
+import {isSubsequencePointer, isSubsequenceStack} from './392';
 
 type TestCase = {
   title: string;
@@ -58,6 +55,12 @@ const cases: TestCase[] = [
     s: 'aab',
     t: 'aaab',
     expected: true,
+  },
+  {
+    title: '',
+    s: 'aaaaaa',
+    t: 'bbaaaa',
+    expected: false,
   },
 ];
 

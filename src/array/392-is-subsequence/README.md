@@ -1,4 +1,3 @@
-
 # 392. Is Subsequence
 
 Given two strings `s` and `t`, determine whether `s` can be formed by deleting characters from `t` without reordering the remaining characters.
