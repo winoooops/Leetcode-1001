@@ -34,6 +34,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [125. Valid Palidrome](./125-valid-palidrome/README.md)
 - [392. Is Subsequence](./392-is-subsequence/README.md)
 - [167. Two Sum](../two-pointers/167-two-sum-II/README.md)
+- [15. Three Sum](../two-pointers/15-three-sum/README.md)
 - [11. Contain Most Water](../two-pointers/11-container-most-water/README.md)
 
 ### Recursion
