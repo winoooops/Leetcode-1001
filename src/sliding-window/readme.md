@@ -7,10 +7,24 @@ Sliding windows keep a moving interval `[left, right]` while tracking just enoug
 1. Define the invariant: when is a window valid (sum >= target, duplicates absent, distinct <= k)?
 2. Pick direction: walk `right` forward once; never move it back. Initialize `left = 0`, empty state, and a worst-case answer.
 3. Add `nums[right]`/`s[right]` into state each step.
-4. While the window is invalid (or can be tightened when valid), move `left` forward, removing its element from state.
-5. Update the answer only when the invariant is satisfied (record length, substring, or count).
+4. While the window is invalid, move `left` forward, removing its element from state; when hunting for the smallest valid window, keep shrinking while the invariant still holds.
+5. Update the answer once the invariant is satisfied (record length, substring, or count).
 6. Keep state O(1): running sum, frequency map, distinct counter, and (for replacements) track the most frequent character in the window.
 7. For fixed-size windows, skip the inner while-loop and slide by adding `right`, removing `left`, then bump both pointers.
+
+### Skeleton to memorize
+
+```ts
+// Outer loop grows right; inner loop shrinks left when the window breaks the rules
+for (let left = 0, right = 0; right < n; right++) {
+  // Handle the newly included element at right
+  while (left <= right && !isValid()) {
+    // Shrink the window from the left until it satisfies the invariant
+    left++;
+  }
+  // Window [left, right] is valid here; capture the needed answer
+}
+```
 
 ### Example: 209. Minimum Size Subarray Sum
 
