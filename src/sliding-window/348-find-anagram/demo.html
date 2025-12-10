@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Anagrams Visualization</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --card-bg: #2a2a2a;
+      --accent: #646cff;
+      --accent-hover: #747bff;
+      --text: #ffffff;
+      --text-dim: #acacac;
+      --success: #42b883;
+      --window-border: #f39c12;
+      --cell-size: 40px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, var(--accent), var(--success));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    input {
+      background: var(--bg);
+      border: 1px solid #444;
+      color: var(--text);
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 150px;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      align-self: flex-end;
+      height: 38px;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      background: #444;
+    }
+
+    button.secondary:hover {
+      background: #555;
+    }
+
+    .visualization {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .string-container {
+      display: flex;
+      gap: 4px;
+      position: relative;
+      padding: 10px 0;
+      overflow-x: auto;
+      min-height: 60px;
+    }
+
+    .char-cell {
+      width: var(--cell-size);
+      height: var(--cell-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #333;
+      border-radius: 6px;
+      font-weight: bold;
+      font-family: monospace;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .window-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border: 3px solid var(--window-border);
+      border-radius: 8px;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      background: rgba(243, 156, 18, 0.1);
+    }
+
+    /* Highlight classes */
+    .char-cell.in-window {
+      background: #444;
+    }
+
+    .char-cell.found-start {
+      border-bottom: 3px solid var(--success);
+    }
+
+    .stats-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-box {
+      background: var(--bg);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .stat-header {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .map-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .map-item {
+      background: #333;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    .missing-count {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--window-border);
+    }
+
+    .log-panel {
+      background: var(--bg);
+      padding: 1rem;
+      border-radius: 8px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    .log-entry {
+      margin-bottom: 4px;
+      border-left: 2px solid #444;
+      padding-left: 8px;
+    }
+
+    .log-entry.highlight {
+      border-left-color: var(--success);
+      color: var(--success);
+    }
+
+    /* Step phases */
+    .phase-expand {
+      color: #3498db;
+    }
+
+    .phase-shrink {
+      color: #e74c3c;
+    }
+
+    .phase-check {
+      color: #f1c40f;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Anagram Finder</h1>
+
+  <div class="controls">
+    <div class="input-group">
+      <label>String (s)</label>
+      <input type="text" id="inputS" value="cbaebabacd">
+    </div>
+    <div class="input-group">
+      <label>Pattern (p)</label>
+      <input type="text" id="inputP" value="abc">
+    </div>
+    <button onclick="init()" class="secondary">Reset</button>
+    <button onclick="nextStep()" id="btnNext">Step</button>
+    <button onclick="togglePlay()" id="btnPlay">Play</button>
+  </div>
+
+  <div class="visualization">
+    <div class="string-container" id="visualS">
+      <!-- Rendered by JS -->
+      <div class="window-indicator" id="windowIndicator" style="display:none;"></div>
+    </div>
+
+    <div class="stats-panel">
+      <div class="stat-box">
+        <div class="stat-header">Needs Map</div>
+        <div class="map-display" id="needsMap">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-header">Total Missing</div>
+        <div class="missing-count" id="missingCount">0</div>
+      </div>
+    </div>
+
+    <div class="log-panel" id="logPanel"></div>
+  </div>
+
+  <script>
+    // Algorithm State
+    let s = "";
+    let p = "";
+    let needs = new Map();
+    let missing = 0;
+
+    let fast = 0;
+    let slow = 0;
+    let state = 'INIT'; // INIT, EXPAND, SHRINK, CHECK, FINISHED
+    let result = [];
+
+    let timer = null;
+
+    const cellWidth = 44; // width + gap
+
+    function log(msg, type = '') {
+      const pan = document.getElementById('logPanel');
+      const d = document.createElement('div');
+      d.className = `log-entry ${type}`;
+      d.textContent = msg;
+      pan.prepend(d);
+    }
+
+    function renderMap() {
+      const el = document.getElementById('needsMap');
+      el.innerHTML = '';
+      needs.forEach((count, char) => {
+        const item = document.createElement('div');
+        item.className = 'map-item';
+        item.textContent = `${char}: ${count}`;
+        // Highlight if count > 0 (still needed) vs satisfied
+        if (count > 0) item.style.color = '#e74c3c'; // red - needed
+        else if (count === 0) item.style.color = '#42b883'; // green - exact
+        else item.style.color = '#3498db'; // blue - surplus
+        el.appendChild(item);
+      });
+
+      document.getElementById('missingCount').textContent = missing;
+    }
+
+    function renderWindow() {
+      const ind = document.getElementById('windowIndicator');
+      if (fast === 0 && slow === 0 && state === 'INIT') {
+        ind.style.display = 'none';
+        return;
+      }
+
+      ind.style.display = 'block';
+      // Visual fast is exclusive in logic, but inclusive for drawing usually?
+      // Logic: window is [slow, fast). 
+      // Width = fast - slow.
+      // Left = slow * cellWidth
+
+      const width = (fast - slow) * cellWidth;
+      const left = slow * cellWidth;
+
+      ind.style.width = width + 'px';
+      ind.style.transform = `translateX(${left}px)`;
+    }
+
+    function init() {
+      s = document.getElementById('inputS').value;
+      p = document.getElementById('inputP').value;
+
+      // Setup Logic
+      needs = new Map();
+      missing = 0;
+      for (const c of p) {
+        needs.set(c, (needs.get(c) ?? 0) + 1);
+        missing++;
+      }
+
+      fast = 0;
+      slow = 0;
+      state = 'EXPAND';
+      result = [];
+
+      // Setup Visuals
+      const container = document.getElementById('visualS');
+      // keep indicator
+      const indicator = document.getElementById('windowIndicator');
+      container.innerHTML = '';
+      container.appendChild(indicator);
+
+      for (let i = 0; i < s.length; i++) {
+        const div = document.createElement('div');
+        div.className = 'char-cell';
+        div.textContent = s[i];
+        div.id = `cell-${i}`;
+        container.appendChild(div);
+      }
+
+      document.getElementById('logPanel').innerHTML = '';
+      log(`Initialized. Target: "${p}"`);
+      renderMap();
+      renderWindow();
+
+      if (timer) clearInterval(timer);
+      timer = null;
+      document.getElementById('btnPlay').textContent = 'Play';
+    }
+
+    function nextStep() {
+      if (state === 'FINISHED') return;
+
+      if (state === 'EXPAND') {
+        if (fast < s.length) {
+          const c = s[fast];
+          log(`Expand: Adding '${c}' at index ${fast}`, 'phase-expand');
+
+          if (needs.has(c)) {
+            const newVal = needs.get(c) - 1;
+            needs.set(c, newVal);
+            if (newVal >= 0) missing--;
+          }
+
+          fast++;
+          state = 'SHRINK';
+        } else {
+          state = 'FINISHED';
+          log("Finished traversal.");
+        }
+      }
+      else if (state === 'SHRINK') {
+        if (fast - slow > p.length) {
+          const left = s[slow];
+          log(`Shrink: Window too big. Removing '${left}' at index ${slow}`, 'phase-shrink');
+
+          if (needs.has(left)) {
+            const newVal = needs.get(left) + 1;
+            needs.set(left, newVal);
+            if (newVal > 0) missing++;
+          }
+          slow++;
+        }
+        // Check if we need to loop shrink?
+        // In fixed size window approach, we only shrink once per step because we only grow by 1.
+        // But let's stick to the logic flow:
+        state = 'CHECK';
+      }
+      else if (state === 'CHECK') {
+        if (fast - slow === p.length && missing === 0) {
+          log(`MATCH FOUND! Start index: ${slow}`, 'highlight');
+          result.push(slow);
+          document.getElementById(`cell-${slow}`).classList.add('found-start');
+        }
+        // Cycle back to expand
+        state = 'EXPAND';
+        if (fast >= s.length) {
+          state = 'FINISHED';
+          log("Finished!");
+        }
+      }
+
+      renderMap();
+      renderWindow();
+    }
+
+    function togglePlay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+        document.getElementById('btnPlay').textContent = 'Play';
+      } else {
+        timer = setInterval(nextStep, 500);
+        document.getElementById('btnPlay').textContent = 'Pause';
+      }
+    }
+
+    // Start on load
+    window.onload = init;
+
+  </script>
+</body>
+
+</html>
