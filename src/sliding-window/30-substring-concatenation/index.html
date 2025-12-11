@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substring Concatenation Demo</title>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --highlight-window: rgba(56, 189, 248, 0.2);
+            --highlight-match: rgba(34, 197, 94, 0.4);
+            --highlight-mismatch: rgba(239, 68, 68, 0.4);
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--secondary-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        input {
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .string-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            font-family: monospace;
+            font-size: 1.25rem;
+            padding: 1rem;
+            background-color: var(--primary-bg);
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .char-box {
+            position: relative;
+            width: 2rem;
+            height: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .char-val {
+            z-index: 2;
+        }
+
+        .char-idx {
+            font-size: 0.6rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .window-highlight {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            background-color: var(--highlight-window);
+            border: 2px solid var(--accent-color);
+            border-radius: 4px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .word-highlight {
+            background-color: var(--highlight-match);
+            border-radius: 4px;
+        }
+
+        .status-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .map-display {
+            background-color: var(--primary-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .map-title {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .map-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-family: monospace;
+        }
+
+        .map-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--secondary-bg);
+            border-radius: 0.25rem;
+        }
+
+        .log-panel {
+            background-color: var(--primary-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            height: 150px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .log-entry {
+            margin-bottom: 0.5rem;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        .log-entry.success { border-color: #22c55e; color: #22c55e; }
+        .log-entry.info { border-color: #38bdf8; color: #e2e8f0; }
+        .log-entry.error { border-color: #ef4444; color: #ef4444; }
+
+        .playback-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Substring Concatenation Visualizer</h1>
+    
+    <div class="container">
+        <div class="controls">
+            <div class="input-group">
+                <label for="inputString">String (s)</label>
+                <input type="text" id="inputString" value="barfoothefoobarman">
+            </div>
+            <div class="input-group">
+                <label for="inputWords">Words (comma separated)</label>
+                <input type="text" id="inputWords" value="foo,bar">
+            </div>
+            <button onclick="initVisualization()">Reset / Init</button>
+        </div>
+
+        <div class="visualization" id="visualizationArea" style="display: none;">
+            <div style="position: relative;">
+                <div id="stringDisplay" class="string-display"></div>
+                <!-- Dynamic window overlay will be appended here -->
+            </div>
+
+            <div class="status-panel">
+                <div class="map-display">
+                    <div class="map-title">Target Word Counts</div>
+                    <div id="targetMap" class="map-content"></div>
+                </div>
+                <div class="map-display">
+                    <div class="map-title">Current Window State</div>
+                    <div id="currentMap" class="map-content"></div>
+                </div>
+            </div>
+
+            <div id="logPanel" class="log-panel"></div>
+
+            <div class="playback-controls">
+                <button onclick="prevStep()" id="btnPrev" disabled>Previous</button>
+                <button onclick="togglePlay()" id="btnPlay">Play</button>
+                <button onclick="nextStep()" id="btnNext">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let state = {
+            s: '',
+            words: [],
+            wordSize: 0,
+            windowSize: 0,
+            steps: [], // Array of step states to replay
+            currentStepIndex: -1,
+            isPlaying: false,
+            playInterval: null
+        };
+
+        function log(message, type = 'info') {
+            const panel = document.getElementById('logPanel');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = message;
+            panel.appendChild(entry);
+            panel.scrollTop = panel.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('logPanel').innerHTML = '';
+        }
+
+        function renderString(s) {
+            const container = document.getElementById('stringDisplay');
+            container.innerHTML = '';
+            for (let i = 0; i < s.length; i++) {
+                const box = document.createElement('div');
+                box.className = 'char-box';
+                box.innerHTML = `
+                    <span class="char-val">${s[i]}</span>
+                    <span class="char-idx">${i}</span>
+                `;
+                container.appendChild(box);
+            }
+        }
+
+        function renderMap(map, elementId) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            map.forEach((count, word) => {
+                const item = document.createElement('div');
+                item.className = 'map-item';
+                item.innerHTML = `<span>${word}</span><span>${count}</span>`;
+                container.appendChild(item);
+            });
+        }
+
+        function generateSteps(s, words) {
+            const steps = [];
+            
+            // Algorithm Logic
+            const wordSize = words[0].length;
+            const windowSize = words.length * wordSize;
+            const wordsMap = new Map();
+            for (const word of words) {
+                wordsMap.set(word, (wordsMap.get(word) || 0) + 1);
+            }
+
+            // Initial setup step
+            steps.push({
+                type: 'SETUP',
+                message: `Initialized. Window size: ${windowSize}, Word size: ${wordSize}`,
+                windowStart: -1,
+                currentMap: new Map(),
+                targetMap: new Map(wordsMap),
+                highlights: []
+            });
+
+            for (let i = 0; i <= s.length - windowSize; i++) {
+                const currentMap = new Map(wordsMap);
+                let matchCount = 0;
+                let currentHighlights = []; // Store indices of matched words
+                
+                steps.push({
+                    type: 'WINDOW_MOVE',
+                    message: `Moving window to index ${i}`,
+                    windowStart: i,
+                    currentMap: new Map(currentMap), // Snapshot
+                    targetMap: new Map(wordsMap),
+                    highlights: []
+                });
+
+                for (let j = i; j < i + windowSize; j += wordSize) {
+                    const currentWord = s.substring(j, j + wordSize);
+                    const wordCount = currentMap.get(currentWord);
+
+                    let stepMsg = `Checking word '${currentWord}' at index ${j}`;
+                    let msgType = 'info';
+
+                    if (wordCount && wordCount > 0) {
+                        currentMap.set(currentWord, wordCount - 1);
+                        if (currentMap.get(currentWord) === 0) {
+                            matchCount++;
+                        }
+                        currentHighlights.push({ start: j, end: j + wordSize, type: 'match' });
+                        stepMsg += " -> Match found!";
+                        msgType = 'success';
+                    } else {
+                         stepMsg += " -> Invalid or excess word.";
+                         msgType = 'error';
+                         // We can iterate more if we want to show exact failure, but basic algo checks all 
+                         // strict implementation might break early or continue. 
+                         // The provided TS implementation continues loop but logic implies strict match.
+                         // Let's stick to the TS logic:
+                         /* 
+                           if (wordCount && wordCount > 0) { ... }
+                           // If not match, it just doesn't increment matchCount. 
+                           // Wait, the TS implementation provided earlier:
+                           // It iterates strictly j += wordSize. 
+                           // Only decrements map. 
+                         */
+                    }
+
+                    steps.push({
+                        type: 'CHECK_WORD',
+                        message: stepMsg,
+                        msgType: msgType,
+                        windowStart: i,
+                        currentMap: new Map(currentMap),
+                        targetMap: new Map(wordsMap),
+                        highlights: [...currentHighlights] // Snapshot
+                    });
+                    
+                    if (matchCount === currentMap.size) { // Wait, logic check. wordsMap.size is unique words.
+                        // Ideally we check if we matched ALL needed words.
+                        // In the TS provided: `if (matchCount === map.size)` -> this map is the COPY.
+                        // And it decrements. So map.size stays same? No, map.size is number of keys.
+                        // The logic in TS: 
+                        // const map = new Map(wordsMap);
+                        // ... if (map.get(currentWord) === 0) matchCount++
+                        // if (matchCount === map.size)
+                        
+                        // This implies if we exhausted counts for all UNIQUE words.
+                        // Example: foo:1, bar:1. Size=2.
+                        // Match foo -> foo:0. MatchCount=1.
+                        // Match bar -> bar:0. MatchCount=2.
+                        // 2 === 2. Found.
+                    }
+                }
+
+                // Check result for this window
+                if (matchCount === wordsMap.size) { // Using wordsMap.size as reference for unique keys
+                     steps.push({
+                        type: 'RESULT',
+                        message: `Window at ${i} is a VALID substring!`,
+                        msgType: 'success',
+                        windowStart: i,
+                        currentMap: new Map(currentMap),
+                        targetMap: new Map(wordsMap),
+                        highlights: currentHighlights,
+                        found: true
+                    });
+                } else {
+                    steps.push({
+                        type: 'RESULT',
+                         message: `Window at ${i} is invalid.`,
+                        msgType: 'info',
+                        windowStart: i,
+                        currentMap: new Map(currentMap),
+                        targetMap: new Map(wordsMap),
+                        highlights: currentHighlights,
+                        found: false
+                    });
+                }
+            }
+
+            return steps;
+        }
+
+        function updateUI(step) {
+            // Update Window Highlight
+            const charBoxWidth = document.querySelector('.string-display').children[0]?.offsetWidth || 0;
+            const container = document.getElementById('stringDisplay');
+            
+            // Remove old overlays
+            const oldOverlays = document.querySelectorAll('.window-highlight, .word-highlight-overlay');
+            oldOverlays.forEach(el => el.remove());
+
+            if (step.windowStart >= 0) {
+                const windowDiv = document.createElement('div');
+                windowDiv.className = 'window-highlight';
+                windowDiv.style.left = (step.windowStart * (32 + 2)) + 'px'; // 32px width + 2px gap roughly (2rem + 2px gap)
+                // Actually better to calculate exact position
+                const startNode = container.children[step.windowStart];
+                if (startNode) {
+                    windowDiv.style.left = startNode.offsetLeft + 'px';
+                    windowDiv.style.width = (state.windowSize * startNode.offsetWidth + (state.windowSize - 1) * 2) + 'px';
+                    container.appendChild(windowDiv);
+                }
+            }
+
+            // Highlights for words
+            step.highlights.forEach(h => {
+                for(let k=h.start; k<h.end; k++) {
+                     const charNode = container.children[k];
+                     if(charNode) charNode.classList.add('word-highlight');
+                }
+            });
+            // Clear previous highlights not in current set
+             Array.from(container.children).forEach((child, idx) => {
+                 let inHighlight = false;
+                 step.highlights.forEach(h => {
+                     if(idx >= h.start && idx < h.end) inHighlight = true;
+                 });
+                 if(!inHighlight) child.classList.remove('word-highlight');
+             });
+
+
+            renderMap(step.targetMap, 'targetMap');
+            renderMap(step.currentMap, 'currentMap');
+            log(step.message, step.msgType || 'info');
+
+            // Update buttons
+            document.getElementById('btnPrev').disabled = state.currentStepIndex <= 0;
+            document.getElementById('btnNext').disabled = state.currentStepIndex >= state.steps.length - 1;
+        }
+
+        function initVisualization() {
+            state.s = document.getElementById('inputString').value;
+            const wordsStr = document.getElementById('inputWords').value;
+            state.words = wordsStr.split(',').map(w => w.trim()).filter(w => w);
+            
+            if (state.words.length === 0) {
+                alert("Please enter words.");
+                return;
+            }
+            state.wordSize = state.words[0].length;
+            state.windowSize = state.words.length * state.wordSize;
+
+            document.getElementById('visualizationArea').style.display = 'flex';
+            clearLog();
+            renderString(state.s);
+            
+            state.steps = generateSteps(state.s, state.words);
+            state.currentStepIndex = 0;
+            
+            updateUI(state.steps[0]);
+        }
+
+        function nextStep() {
+            if (state.currentStepIndex < state.steps.length - 1) {
+                state.currentStepIndex++;
+                updateUI(state.steps[state.currentStepIndex]);
+            } else {
+                stopPlay();
+            }
+        }
+
+        function prevStep() {
+            if (state.currentStepIndex > 0) {
+                state.currentStepIndex--;
+                updateUI(state.steps[state.currentStepIndex]);
+            }
+        }
+
+        function togglePlay() {
+            if (state.isPlaying) {
+                stopPlay();
+            } else {
+                startPlay();
+            }
+        }
+
+        function startPlay() {
+            state.isPlaying = true;
+            document.getElementById('btnPlay').textContent = 'Pause';
+            state.playInterval = setInterval(nextStep, 800);
+        }
+
+        function stopPlay() {
+            state.isPlaying = false;
+            document.getElementById('btnPlay').textContent = 'Play';
+            clearInterval(state.playInterval);
+        }
+
+    </script>
+</body>
+</html>
