@@ -22,6 +22,21 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - You need `O(log n)` lookups rather than scanning linearly.
 - “Find first/last occurrence”, “search insert position”, or “min time satisfying condition” patterns.
 
+### Hash Table & Linear Search
+> Use hash maps for O(1) lookups when searching for complements, pairs, or frequency tracking in single pass.
+
+**Technique cues**
+- Store seen elements with their indices/counts for instant complement lookup
+- Trade O(n) space for O(n) time instead of O(n²) nested loops
+- Perfect for "find pair that sums to target" or "check if element exists" patterns
+
+- [1. Two Sum](./1-two-sum/README.md)
+
+**When to Reach For It**
+- Need to find pairs, complements, or check existence in O(1) time
+- Can afford O(n) extra space for significant time improvement
+- Single pass through data with lookups to previous elements
+
 ### Two Pointers & Iterations
 > Lightweight state machines that sweep once while keeping just enough context (a window, pair, or aggregate) in hand.
 
@@ -33,6 +48,7 @@ Arrays reward local reasoning: keep passes O(n), avoid extra buffers unless pref
 - [14. LCP](./14-longest-common-prefix/README.md)
 - [125. Valid Palidrome](./125-valid-palidrome/README.md)
 - [392. Is Subsequence](./392-is-subsequence/README.md)
+- [1. Two Sum](./1-two-sum/README.md) (sorted array variant)
 - [167. Two Sum](../two-pointers/167-two-sum-II/README.md)
 - [15. Three Sum](../two-pointers/15-three-sum/README.md)
 - [11. Contain Most Water](../two-pointers/11-container-most-water/README.md)
