@@ -1,10 +1,7 @@
+
 # 392. Is Subsequence
 
-A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters 
-without disturbing the relative positions of the remaining characters. 
-(i.e., "ace" is a subsequence of "abcde" while "aec" is not).
-
-
+Given two strings `s` and `t`, determine whether `s` can be formed by deleting characters from `t` without reordering the remaining characters.
 
 ## Example
 
@@ -18,39 +15,52 @@ Input: s = "axc", t = "ahbgdc"
 Output: false
 ```
 
-```
-Input: s = "ace", t = "abcde"
-Output: true
-```
-
-```
-Input: s = "aec", t = "abcde"
-Output: false
-```
-
 ## Solution
 
-### Two Pointers 
-* use *pointer_x* to iterate to points to chars in string `s`, and iterate string `t` with *pointer_y*. 
-* check if characters at `pointer_x` and `pointer_y` are equal: 
-  * if they are the same, *pointer_x* move to right
-* if all the characters in `s` are checked, then `s` is subsequence of `t`; otherwise
+### Queue-style scan
+- Load every character from `s` into a queue and walk through `t` one character at a time.
+- If the current `t` character equals the queue front, remove it; otherwise put the queued character back so it can be checked against the next `t` character.
+- When the queue empties, every character in `s` appeared in order.
 
 ```ts
-function isSubsequence(s: string, t: string): boolean {
-  if(s === t) return true;
-  if(s.length > t.length) return false;
-
-  let x = 0;
-
-  for(let y = 0; y < t.length; y++) {
-    if(s.charCodeAt(x) === t.charCodeAt(y)) {
-      x++;
-    }
-    if(x === s.length) return true;
+export function isSubsequenceStack(s: string, t: string): boolean {
+  const stack: string[] = [];
+  for (let i = 0; i < s.length; i++) {
+    stack.push(s[i]);
   }
 
-  return false;
+  let j = 0;
+  while (stack.length > 0 && j < t.length) {
+    const peekFirst = stack.shift()!;
+    if (t[j] !== peekFirst) {
+      stack.unshift(peekFirst);
+    }
+    j++;
+  }
+
+  return stack.length === 0;
 }
 ```
 
+### Two pointers (greedy)
+
+- use pointer `i` and pointer `j` to iterate through `s` and `t`, the iterate should end when any of the pointer reaches the end
+- if `s[i] === s[t]`, then increment the i pointer; always incrementing j pointer 
+- after the iteration is completed, check if i pointer has indeed reaches the end => every character in the string `s` has a match
+
+```ts
+export function isSubsequencePointer(s: string, t: string): boolean {
+  let i = 0; // iterate through s
+  let j = 0; // iterate through t
+
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) {
+      i++;
+    }
+
+    j++;
+  }
+
+  return i === s.length;
+}
+```

@@ -57,7 +57,6 @@ export function solutionThree(nums: number[]): number {
       ans = Math.max(ans, dpPrevious + dpNext + 1)
       dpMap.set(nums[i], dpPrevious + dpNext + 1);
       dpMap.set(nums[i], dpPrevious + dpNext + 1);
-      console.log(`dp[${nums[i]}]: ${dpPrevious + dpNext + 1}`);
     }
   }
 

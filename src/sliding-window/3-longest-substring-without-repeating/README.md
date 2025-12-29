@@ -60,3 +60,28 @@ function lengthOfLongestSubstring(s: string): number {
   return length;
 }
 ```
+
+### Sliding Window with Set
+Follows the sliding-window template in `src/sliding-window/README.md`:
+* invariant: the window holds all distinct characters; state is a `Set`
+* grow `fast` and add `s[fast]`; while duplicate seen, move `slow` forward deleting from the set until the invariant is restored
+* once valid, record the current window length
+
+```ts
+export function lengthOfLongestSubstringSet(s: string): number {
+  let length = 0;
+  const set: Set<string> = new Set();
+
+  for (let slow = 0, fast = 0; fast < s.length; fast++) {
+    while (set.has(s[fast])) {
+      set.delete(s[slow]);
+      slow++;
+    }
+    set.add(s[fast]);
+
+    length = Math.max(length, fast - slow + 1);
+  }
+
+  return length;
+}
+```

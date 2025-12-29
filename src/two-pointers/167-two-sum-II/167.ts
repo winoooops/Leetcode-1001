@@ -1,13 +1,22 @@
 export function twoSum(numbers: number[], target: number): number[] {
-  let left: number = 1;
-  let right: number = numbers.length;
-  let result: number;
+  let left = 0;
+  let right = numbers.length - 1;
 
-  while(left < right) {
-    result = numbers[left-1] + numbers[right-1];
-    if(result === target) return [left, right];
-    if(result < target) left++;
-    if(result > target) right--;
+  while (left < right) {
+    const result = numbers[left] + numbers[right];
+
+    if (result === target) return [left + 1, right + 1];
+
+    if (result < target) {
+      left++;
+      continue;
+    }
+
+    if (result > target) {
+      right--;
+      continue;
+    }
   }
+
   return [];
 }

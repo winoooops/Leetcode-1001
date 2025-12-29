@@ -1,26 +1,31 @@
-export function threeSum(numbers: number[]) {
-  numbers.sort((a, b) => a - b);
-  const results: number[][] = [];
-  let sum: number;
+export function threeSum(nums: number[]): number[][] {
+  const result: number[][] = [];
+  const sorted = nums.sort((a, b) => a - b);
 
-  for(let x = 0; x < numbers.length - 2; x++) {
-    if(x > 0 && numbers[x] === numbers[x - 1]) continue;
+  for (let i = 0; i < sorted.length; i++) {
+    if (i > 0 && sorted[i] === sorted[i - 1]) continue;
+    const target = 0 - sorted[i];
+    let left = i + 1;
+    let right = sorted.length - 1;
 
-    let y = x + 1;
-    let z = numbers.length - 1;
-    while(y < z) {
-      sum = numbers[x] + numbers[y] + numbers[z];
-      if(sum === 0) {
-        results.push([numbers[x], numbers[y], numbers[z]])
-        while(numbers[y+1] === numbers[y]) y++;
-        while(numbers[z-1] === numbers[z]) z--;
-        y++;
-        z--;
+    while (left < right) {
+      const sum = sorted[left] + sorted[right];
+      if (sum === target) {
+        result.push([sorted[i], sorted[left], sorted[right]]);
+        while (left < right && sorted[left] === sorted[left + 1]) {
+          left++;
+        }
+        while (left < right && sorted[right] === sorted[right - 1]) {
+          right--;
+        }
+        left++;
+        right--;
+      } else if (sum < target) {
+        left++;
+      } else {
+        right--;
       }
-      if(sum < 0) y++;
-      if(sum > 0) z--;
     }
   }
-
-  return results;
+  return result;
 }

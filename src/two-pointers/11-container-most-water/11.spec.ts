@@ -1,35 +1,42 @@
-import {maxArea} from "./11";
+import {maxArea} from './11';
 
-describe('11. Container with Most Water', () => {
-  it('should be 6', () => {
-    const height = [1,8,6];
-    const expected = 6;
+type TestCase = {
+  title: string;
+  height: number[];
+  expected: number;
+};
+
+const cases: TestCase[] = [
+  {
+    title: 'classic wide example',
+    height: [1, 8, 6, 2, 5, 4, 8, 3, 7],
+    expected: 49,
+  },
+  {
+    title: 'minimal two lines',
+    height: [1, 1],
+    expected: 1,
+  },
+  {
+    title: 'best area uses inner right wall',
+    height: [1, 8, 6],
+    expected: 6,
+  },
+  {
+    title: 'tallest bars near the center',
+    height: [2, 3, 4, 5, 18, 17, 6],
+    expected: 17,
+  },
+  {
+    title: 'uniform heights maximize width',
+    height: [5, 5, 5, 5],
+    expected: 15,
+  },
+];
+
+describe('11. Container With Most Water', () => {
+  it.each(cases)('case: $title', ({height, expected}) => {
     const result = maxArea(height);
-
     expect(result).toBe(expected);
   });
-
-  it("should be 1", () => {
-    const height = [1, 1];
-    const expected = 1;
-    const result = maxArea(height);
-
-    expect(result).toBe(expected);
-  })
-
-  it('should be 49', () => {
-    const height = [1,8,6,2,5,4,8,3,7];
-    const expected = 49;
-    const result = maxArea(height);
-
-    expect(result).toBe(expected);
-  });
-
-  it('should be 17', () => {
-    const height = [2,3,4,5,18,17,6];
-    const expected = 17;
-    const result = maxArea(height);
-
-    expect(result).toBe(expected);
-  });
-})
+});

@@ -1,23 +1,37 @@
-import {lengthOfLongestSubstring} from "./3";
+import {lengthOfLongestSubstring, lengthOfLongestSubstringSet} from './3';
+
+const cases = [
+  {
+    title: 'should be 3',
+    s: 'abcabcbb',
+    expected: 3,
+  },
+  {
+    title: 'should be 1',
+    s: 'bbbbb',
+    expected: 1,
+  },
+  {
+    title: 'should be 3',
+    s: 'pwwkew',
+    expected: 3,
+  },
+  {
+    title: 'should be 2',
+    s: 'abba',
+    expected: 2,
+  },
+];
+
+const solutions = [
+  {label: 'without set', fn: lengthOfLongestSubstring},
+  {label: 'with set', fn: lengthOfLongestSubstringSet},
+];
 
 describe('3. Longest Substring without Repeating Characters', () => {
-  it('should be 3', function () {
-    const result = lengthOfLongestSubstring("abcabcbb")
-    expect(result).toBe(3);
+  describe.each(solutions)('$(label)', ({fn}) => {
+    it.each(cases)('$title', ({s, expected}) => {
+      expect(fn(s)).toBe(expected);
+    });
   });
-
-  it('should be 1', function () {
-    const result = lengthOfLongestSubstring("bbbbb")
-    expect(result).toBe(1);
-  });
-
-  it('should be 3', function () {
-    const result = lengthOfLongestSubstring("pwwkew")
-    expect(result).toBe(3);
-  });
-
-  it('should be 2', function () {
-    const result = lengthOfLongestSubstring("abba")
-    expect(result).toBe(2);
-  });
-})
+});
